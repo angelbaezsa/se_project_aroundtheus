@@ -1,0 +1,7 @@
+.page {
+  max-width: 1600px;
+  margin: 0 auto;
+  background-color: black;
+  height: 100vh;
+  padding: 2.8rem 12.5rem 15.3rem 12.5rem;
+}

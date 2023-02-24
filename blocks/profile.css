@@ -1,0 +1,7 @@
+.profile {
+  display: flex;
+}
+
+.profile__avatar {
+  border-radius: 100%;
+}
