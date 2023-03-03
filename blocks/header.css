@@ -3,7 +3,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
-  row-gap: 2.56rem;
+  row-gap: 41px;
   min-width: 100%;
 }
 
@@ -11,9 +11,18 @@
   border: 0.2 solid white;
   opacity: 70%;
   width: 100%;
+  margin: 0;
 }
 
 .header__logo {
   max-width: 173px;
   max-height: 33px;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 320px) {
+  .header__logo {
+    margin-left: 27px;
+  }
 }

@@ -1,7 +1,76 @@
 .profile {
+  max-width: 880px;
   display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 2.8rem;
+  color: white;
 }
 
 .profile__avatar {
+  margin-right: 1.8rem;
+}
+
+.profile__avatar_rounded {
   border-radius: 100%;
+}
+
+.profile__info {
+  display: grid;
+  margin-top: 22px;
+  grid-template-areas:
+    "title button"
+    "occupation occupation";
+}
+
+.profile__info_name {
+  grid-area: title;
+  margin: 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 48px;
+}
+
+.profile__info_occuppation {
+  grid-area: occupation;
+  margin: 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.profile__info_edit-button {
+  grid-area: button;
+  width: 24px;
+  height: 24px;
+  align-self: center;
+  margin-left: 1.12rem;
+  background: transparent;
+  border: 1px white solid;
+}
+
+.profile__info_edit-button:hover {
+  opacity: 0.6;
+}
+
+.profile__button_wrapper {
+  margin-left: auto;
+}
+
+.profile__button_add {
+  width: 150px;
+  height: 50px;
+  border: 1px white solid;
+  background-color: rgba(0, 0, 0, 0);
+  margin-top: 35px;
+  margin-left: auto;
+}
+
+.profile__button_add:hover {
+  opacity: 0.6;
 }

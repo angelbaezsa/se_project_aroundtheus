@@ -1,0 +1,51 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 282px;
+  height: 381px;
+  border-radius: 10px;
+  border: 1px;
+  background-color: white;
+  overflow: hidden;
+}
+
+.card__image {
+  width: 282px;
+  height: 282px;
+  overflow: hidden;
+}
+.card__content {
+  width: 246px;
+  height: 23px;
+  margin: auto auto auto auto;
+  display: flex;
+  text-overflow: ellipsis;
+}
+.card__title {
+  margin: 0 auto 0 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-overflow: ellipsis;
+}
+
+.card__like-button {
+  border: none;
+  background-color: transparent;
+  width: 21px;
+  height: 19px;
+  background-image: url(../images/card\ hearth.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card__like-button:hover {
+  opacity: 0.5;
+}
+
+.card__like-button:active {
+  background-image: url(../images/card\ hearth\ black.svg);
+  opacity: 1;
+}
