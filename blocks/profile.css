@@ -4,12 +4,12 @@
   flex-wrap: wrap;
   box-sizing: border-box;
   width: 100%;
-  margin-top: 2.8rem;
+  margin-top: 45px;
   color: white;
 }
 
 .profile__avatar {
-  margin-right: 1.8rem;
+  margin-right: 30px;
 }
 
 .profile__avatar_rounded {
@@ -73,4 +73,30 @@
 
 .profile__button_add:hover {
   opacity: 0.6;
+}
+
+/* Media Queries */
+
+@media (min-width: 320px) and (max-width: 580px) {
+  .profile {
+    justify-content: center;
+    margin-top: 42px;
+  }
+  .profile__avatar {
+    margin: 0;
+  }
+  .profile__info_name {
+    font-size: 22px;
+  }
+
+  .profile__info_occuppation {
+    font-size: 14px;
+  }
+
+  .profile__button_wrapper {
+    min-width: 100%;
+  }
+  .profile__button_add {
+    width: 100%;
+  }
 }

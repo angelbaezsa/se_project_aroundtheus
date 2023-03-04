@@ -13,16 +13,24 @@
   width: 100%;
   margin: 0;
 }
+.header__icon {
+  width: 100%;
+}
 
 .header__logo {
   max-width: 173px;
   max-height: 33px;
+  min-width: 126px;
+  min-height: 24px;
+  width: 100%;
 }
 
 /* Media Queries */
 
-@media screen and (max-width: 320px) {
+@media (min-width: 320px) and (max-width: 768px) {
   .header__logo {
     margin-left: 27px;
+    width: 126px;
+    height: 24px;
   }
 }
