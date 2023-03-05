@@ -81,6 +81,8 @@
   .profile {
     justify-content: center;
     margin-top: 42px;
+    flex-direction: column;
+    align-items: center;
   }
   .profile__avatar {
     margin: 0;
@@ -91,8 +93,22 @@
 
   .profile__info_occuppation {
     font-size: 14px;
+    text-align: center;
   }
 
+  .profile__button_wrapper {
+    min-width: 100%;
+  }
+  .profile__button_add {
+    width: 100%;
+  }
+}
+
+@media (min-width: 581px) and (max-width: 690px) {
+  .profile {
+    padding-left: 19px;
+    padding-right: 19px;
+  }
   .profile__button_wrapper {
     min-width: 100%;
   }

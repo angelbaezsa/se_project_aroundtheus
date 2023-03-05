@@ -7,6 +7,12 @@
 
 @media (min-width: 320px) and (max-width: 580px) {
   .content {
-    max-width: 282px;
+    max-width: 90vw;
+  }
+}
+
+@media (min-width: 581px) and (max-width: 690px) {
+  .content {
+    max-width: 581px;
   }
 }
