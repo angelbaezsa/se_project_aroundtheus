@@ -104,7 +104,7 @@
   }
 }
 
-@media (min-width: 581px) and (max-width: 690px) {
+@media (min-width: 581px) and (max-width: 783px) {
   .profile {
     padding-left: 19px;
     padding-right: 19px;
@@ -114,5 +114,12 @@
   }
   .profile__button_add {
     width: 100%;
+  }
+}
+
+@media (min-width: 690px) and (max-width: 879px) {
+  .profile {
+    padding-left: 6%;
+    padding-right: 6%;
   }
 }
