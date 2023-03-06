@@ -6,7 +6,6 @@
   border-radius: 10px;
   border: 1px;
   background-color: white;
-  overflow: hidden;
 
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -16,8 +15,8 @@
 .card__image {
   width: 282px;
   height: 282px;
-  overflow: hidden;
 }
+
 .card__content {
   width: 246px;
   height: 23px;
