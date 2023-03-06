@@ -24,7 +24,7 @@
     "occupation occupation";
 }
 
-.profile__info_name {
+.profile__heading {
   grid-area: title;
   margin: 0;
   font-family: "Inter";
@@ -34,7 +34,7 @@
   line-height: 48px;
 }
 
-.profile__info_occuppation {
+.profile__sub-heading {
   grid-area: occupation;
   margin: 0;
   font-family: "Inter";
@@ -44,7 +44,7 @@
   line-height: 22px;
 }
 
-.profile__info_edit-button {
+.profile__edit-button {
   grid-area: button;
   width: 24px;
   height: 24px;
@@ -58,11 +58,11 @@
   opacity: 0.6;
 }
 
-.profile__button_wrapper {
+.profile__button-wrapper {
   margin-left: auto;
 }
 
-.profile__button_add {
+.profile__add-button {
   width: 150px;
   height: 50px;
   border: 1px white solid;
@@ -87,11 +87,11 @@
   .profile__avatar {
     margin: 0;
   }
-  .profile__info_name {
+  .profile__heading {
     font-size: 22px;
   }
 
-  .profile__info_occuppation {
+  .profile__sub-heading {
     font-size: 14px;
     text-align: center;
   }
