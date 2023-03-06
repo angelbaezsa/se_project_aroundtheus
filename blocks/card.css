@@ -22,7 +22,6 @@
   height: 23px;
   margin: auto auto auto auto;
   display: flex;
-  text-overflow: ellipsis;
 }
 .card__title {
   margin: 0 auto 0 0;
