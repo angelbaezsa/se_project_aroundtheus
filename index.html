@@ -10,122 +10,105 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
-  <body>
-    <div class="page">
-      <div class="content">
-        <header class="header">
-          <div class="header__logo">
-            <img
-              class="header__icon"
-              src="./images/header__logo.svg"
-              alt="around the world logo"
-            />
+  <body class="page">
+    <div class="content">
+      <header class="header">
+        <img
+          class="header__icon header__logo"
+          src="./images/header__logo.svg"
+          alt="around the world logo"
+        />
+        <hr class="header__line" />
+      </header>
+      <main>
+        <section class="profile">
+          <img
+            class="profile__avatar profile__avatar_rounded"
+            src="./images/header__avatar.jpg"
+            alt="Jacques Custeau portrait"
+          />
+          <div class="profile__info">
+            <h1 class="profile__heading">Jacques Custeau</h1>
+            <p class="profile__sub-heading">Explorer</p>
+            <button class="profile__edit-button">
+              <img alt="pencil icon" src="./images/edit_button_Vector.svg" />
+            </button>
           </div>
-          <hr class="header__line" />
-        </header>
-        <main>
-          <section class="profile">
-            <div class="profile__avatar-wrapper">
-              <img
-                class="profile__avatar profile__avatar_rounded"
-                src="./images/header__avatar.jpg"
-                alt="Jacques Custeau portrait"
-              />
+          <div class="profile__button-wrapper">
+            <button class="profile__add-button">
+              <img alt="plus sign icon" src="./images/add_button_Vector.svg" />
+            </button>
+          </div>
+        </section>
+        <article class="gallery">
+          <div class="gallery__card card">
+            <img
+              src="./images/yosemite_valley.jpg"
+              alt="yosemite park"
+              class="card__image"
+            />
+            <div class="card__content">
+              <h2 class="card__title">Yosemite Valley</h2>
+              <button class="card__like-button"></button>
             </div>
-            <div class="profile__info">
-              <h1 class="profile__heading">Jacques Custeau</h1>
-              <h2 class="profile__sub-heading">Explorer</h2>
-              <button class="profile__edit-button">
-                <img alt="pencil icon" src="./images/edit_button_Vector.svg" />
-              </button>
-            </div>
-            <div class="profile__button-wrapper">
-              <button class="profile__add-button">
-                <img
-                  alt="plus sign icon"
-                  src="./images/add_button_Vector.svg"
-                />
-              </button>
-            </div>
-          </section>
-          <section class="gallery">
-            <div class="gallery__card card">
-              <img
-                src="./images/yosemite_valley.jpg"
-                alt="yosemite park"
-                class="card__image"
-              />
-              <div class="card__content">
-                <h2 class="card__title">Yosemite Valley</h2>
-                <button class="card__like-button"></button>
-              </div>
-            </div>
+          </div>
 
-            <div class="gallery__card card">
-              <img
-                src="./images/lake-louise.jpg"
-                alt="Lake Louise"
-                class="card__image"
-              />
-              <div class="card__content">
-                <h2 class="card__title">Lake Louise</h2>
-                <button class="card__like-button"></button>
-              </div>
+          <div class="gallery__card card">
+            <img
+              src="./images/lake-louise.jpg"
+              alt="Lake Louise"
+              class="card__image"
+            />
+            <div class="card__content">
+              <h2 class="card__title">Lake Louise</h2>
+              <button class="card__like-button"></button>
             </div>
+          </div>
 
-            <div class="gallery__card card">
-              <img
-                src="./images/bald-mountains.jpg"
-                alt="Bald mountains"
-                class="card__image"
-              />
-              <div class="card__content">
-                <h2 class="card__title">Bald Mountains</h2>
-                <button class="card__like-button"></button>
-              </div>
+          <div class="gallery__card card">
+            <img
+              src="./images/bald-mountains.jpg"
+              alt="Bald mountains"
+              class="card__image"
+            />
+            <div class="card__content">
+              <h2 class="card__title">Bald Mountains</h2>
+              <button class="card__like-button"></button>
             </div>
+          </div>
 
-            <div class="gallery__card card">
-              <img
-                src="./images/latemar.jpg"
-                alt="Latemar"
-                class="card__image"
-              />
-              <div class="card__content">
-                <h2 class="card__title">Latemar</h2>
-                <button class="card__like-button"></button>
-              </div>
+          <div class="gallery__card card">
+            <img src="./images/latemar.jpg" alt="Latemar" class="card__image" />
+            <div class="card__content">
+              <h2 class="card__title">Latemar</h2>
+              <button class="card__like-button"></button>
             </div>
+          </div>
 
-            <div class="gallery__card card">
-              <img
-                src="./images/vanoise.jpg"
-                alt="vanoise"
-                class="card__image"
-              />
-              <div class="card__content">
-                <h2 class="card__title">Vanoise National park</h2>
-                <button class="card__like-button"></button>
-              </div>
+          <div class="gallery__card card">
+            <img src="./images/vanoise.jpg" alt="vanoise" class="card__image" />
+            <div class="card__content">
+              <h2 class="card__title">Vanoise National park</h2>
+              <button class="card__like-button"></button>
             </div>
+          </div>
 
-            <div class="gallery__card card">
-              <img
-                src="./images/lago.jpg"
-                alt="yosemite park"
-                class="card__image"
-              />
-              <div class="card__content">
-                <h2 class="card__title">Lago di Rraies</h2>
-                <button class="card__like-button"></button>
-              </div>
+          <div class="gallery__card card">
+            <img
+              src="./images/lago.jpg"
+              alt="yosemite park"
+              class="card__image"
+            />
+            <div class="card__content">
+              <h2 class="card__title">Lago di Rraies</h2>
+              <button class="card__like-button"></button>
             </div>
-          </section>
-        </main>
-        <footer class="footer">
-          <p class="footer__copyright">© 2023 Around The U.S.</p>
-        </footer>
-      </div>
+          </div>
+        </article>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">© 2023 Around The U.S.</p>
+      </footer>
     </div>
   </body>
 </html>

@@ -10,9 +10,6 @@
 
 .profile__avatar {
   margin-right: 30px;
-}
-
-.profile__avatar_rounded {
   border-radius: 100%;
 }
 
@@ -96,10 +93,10 @@
     text-align: center;
   }
 
-  .profile__button_wrapper {
+  .profile__button-wrapper {
     min-width: 100%;
   }
-  .profile__button_add {
+  .profile__add-button {
     width: 100%;
   }
 }
@@ -109,10 +106,10 @@
     padding-left: 19px;
     padding-right: 19px;
   }
-  .profile__button_wrapper {
+  .profile__button-wrapper {
     min-width: 100%;
   }
-  .profile__button_add {
+  .profile__add-button {
     width: 100%;
   }
 }
