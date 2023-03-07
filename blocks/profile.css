@@ -24,21 +24,23 @@
 .profile__heading {
   grid-area: title;
   margin: 0;
-  font-family: "Inter";
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
+  text-overflow: ellipsis;
 }
 
 .profile__sub-heading {
   grid-area: occupation;
   margin: 0;
-  font-family: "Inter";
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
+  text-overflow: ellipsis;
 }
 
 .profile__edit-button {
@@ -49,9 +51,10 @@
   margin-left: 1.12rem;
   background: transparent;
   border: 1px white solid;
+  cursor: pointer;
 }
 
-.profile__info_edit-button:hover {
+.profile__edit-button:hover {
   opacity: 0.6;
 }
 
@@ -62,17 +65,27 @@
 .profile__add-button {
   width: 150px;
   height: 50px;
-  border: 1px white solid;
+  border: 2px white solid;
+  border-radius: 3px;
   background-color: rgba(0, 0, 0, 0);
   margin-top: 35px;
   margin-left: auto;
+  cursor: pointer;
 }
 
-.profile__button_add:hover {
+.profile__add-button:hover {
   opacity: 0.6;
 }
 
 /* Media Queries */
+
+@media screen and (max-width: 320px) {
+  .profile {
+    width: 282px;
+    height: 286px;
+    margin: 42px auto 0 auto;
+  }
+}
 
 @media (min-width: 320px) and (max-width: 580px) {
   .profile {
@@ -80,22 +93,22 @@
     margin-top: 42px;
     flex-direction: column;
     align-items: center;
+    margin: 42px auto 0 auto;
   }
   .profile__avatar {
     margin: 0;
   }
   .profile__heading {
     font-size: 22px;
+    line-height: 27px;
   }
 
   .profile__sub-heading {
     font-size: 14px;
+    line-height: 17px;
     text-align: center;
   }
 
-  .profile__button-wrapper {
-    min-width: 100%;
-  }
   .profile__add-button {
     width: 100%;
   }

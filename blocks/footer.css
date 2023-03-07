@@ -1,14 +1,25 @@
-.footer {
-  display: grid;
-}
 .footer__copyright {
   margin: 67px auto 60px 0;
   padding: 0;
   width: 318px;
-  font-family: "Inter";
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   color: #545454;
+}
+
+@media (min-width: 320px) and (max-width: 580px) {
+  .footer__copyright {
+    margin: 50px auto 36px calc((100vw - 282px) / 2);
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+@media (min-width: 581px) and (max-width: 879px) {
+  .footer__copyright {
+    margin-left: calc((100vw - 564px) / 2);
+  }
 }

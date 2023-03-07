@@ -1,14 +1,9 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 282px;
-  height: 381px;
+  min-width: 282px;
   border-radius: 10px;
-  border: 1px;
   background-color: white;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
   overflow: hidden;
 }
 
@@ -19,13 +14,14 @@
 
 .card__content {
   width: 246px;
-  height: 23px;
   margin: auto auto auto auto;
   display: flex;
+  margin: 25px auto 31px auto;
 }
+
 .card__title {
   margin: 0 auto 0 0;
-  font-family: "Inter";
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
@@ -43,6 +39,8 @@
   background-image: url(../images/card\ hearth.svg);
   background-position: center;
   background-repeat: no-repeat;
+  align-self: center;
+  cursor: pointer;
 }
 
 .card__like-button:hover {
