@@ -13,3 +13,5 @@ This project is made so all the elements are displayed correctly on popular scre
 The main purpose of this project is to use display flex and grid properties to achieve a beautiful adaptative web page.
 
 
+LINK TO DEPLOYED WEBSITE: |
+https://angelbaezsa.github.io/se_project_aroundtheus/
