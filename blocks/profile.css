@@ -29,6 +29,8 @@
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
+  text-align: center;
+  max-width: 373px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -42,6 +44,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
+  max-width: 415px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -108,12 +111,14 @@
   .profile__heading {
     font-size: 22px;
     line-height: 27px;
+    max-width: 196px;
   }
 
   .profile__sub-heading {
     font-size: 14px;
     line-height: 17px;
     text-align: center;
+    max-width: 282px;
   }
 
   .profile__edit-button {
@@ -126,7 +131,7 @@
   }
 }
 
-@media (min-width: 581px) and (max-width: 783px) {
+@media (min-width: 581px) and (max-width: 784px) {
   .profile {
     padding-left: 19px;
     padding-right: 19px;
