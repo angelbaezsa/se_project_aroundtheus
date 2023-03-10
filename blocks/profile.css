@@ -131,7 +131,17 @@
   }
 }
 
-@media (min-width: 581px) and (max-width: 784px) {
+@media (min-width: 580px) and (max-width: 690px) {
+  .profile__heading {
+    max-width: 347px;
+  }
+
+  .profile__sub-heading {
+    max-width: 347px;
+  }
+}
+
+@media (min-width: 581px) and (max-width: 813px) {
   .profile {
     padding-left: 19px;
     padding-right: 19px;
