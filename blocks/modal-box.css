@@ -1,0 +1,10 @@
+.modal-box {
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: #000000ad;
+  z-index: 1;
+}
