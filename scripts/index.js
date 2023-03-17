@@ -24,3 +24,19 @@ let initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+const closeButton = document.querySelector(".form__button-close"); //button that closes form
+const editButton = document.querySelector(".profile__edit-button"); //button that opens form
+
+closeButton.addEventListener("click", closeModal);
+editButton.addEventListener("click", openModal);
+
+function closeModal() {
+  var form = document.querySelector(".modal-box");
+  form.setAttribute("style", "visibility: hidden");
+}
+
+function openModal() {
+  var form = document.querySelector(".modal-box");
+  form.setAttribute("style", "visibility: visible");
+}
