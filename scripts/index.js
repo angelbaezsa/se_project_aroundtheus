@@ -27,9 +27,13 @@ let initialCards = [
 
 const closeButton = document.querySelector(".form__button-close"); //button that closes form
 const editButton = document.querySelector(".profile__edit-button"); //button that opens form
+const saveButton = document.querySelector(".form");
 
 closeButton.addEventListener("click", closeModal);
 editButton.addEventListener("click", openModal);
+saveButton.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
 
 function closeModal() {
   var form = document.querySelector(".modal-box");
