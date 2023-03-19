@@ -24,7 +24,23 @@ let initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+// this code generates the gallery cards using JS and template
+let cardTemplate = document.querySelector("#card").content;
+let Gallery = document.querySelector(".gallery");
 
+function createCards() {
+  for (i = 0; i < initialCards.length; i++) {
+    let cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+    cardElement.querySelector(".card__title").textContent =
+      initialCards[i].name;
+    cardElement.querySelector(".card__image").src = initialCards[i].link;
+    Gallery.append(cardElement);
+  }
+}
+
+createCards();
+
+//----------------------------------------------------------------------------------------------------->
 const closeButton = document.querySelector(".form__button-close"); //button that closes form
 const editButton = document.querySelector(".profile__edit-button"); //button that opens form
 const saveButton = document.querySelector(".form__save-button");

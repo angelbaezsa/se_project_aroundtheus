@@ -38,7 +38,18 @@
           <!-- </div> -->
         </section>
         <section class="gallery">
-          <article class="card">
+          <template id="card">
+            <article class="card">
+              <div class="gallery__card card">
+                <img src="" alt="" class="card__image" />
+                <div class="card__content">
+                  <h2 class="card__title"></h2>
+                  <button type="button" class="card__like-button"></button>
+                </div>
+              </div>
+            </article>
+          </template>
+          <!-- <article class="card">
             <div class="gallery__card card">
               <img
                 src="./images/yosemite_valley.jpg"
@@ -120,7 +131,7 @@
               </div>
             </div>
           </article>
-        </section>
+        </section> -->
         <section class="modal-box">
           <form class="form">
             <button class="form__button-close"></button>
