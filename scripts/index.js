@@ -1,7 +1,7 @@
 let initialCards = [
   {
     name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
   },
   {
     name: "Lake Louise",
@@ -29,7 +29,7 @@ let cardTemplate = document.querySelector("#card").content;
 let Gallery = document.querySelector(".gallery");
 
 function createCards() {
-  for (i = 0; i < initialCards.length; i++) {
+  for (let i = 0; i < initialCards.length; i++) {
     let cardElement = cardTemplate.querySelector(".card").cloneNode(true);
     cardElement.querySelector(".card__title").textContent =
       initialCards[i].name;
