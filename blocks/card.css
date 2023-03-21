@@ -5,6 +5,7 @@
   border-radius: 10px;
   background-color: white;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .card__image {

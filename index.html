@@ -51,29 +51,37 @@
           </template>
         </section>
         <section class="modal-box">
-          <form class="form">
-            <button class="form__button-close"></button>
-            <h3 class="form__heading">Edit profile</h3>
-            <input
-              type="text"
-              placeholder="name"
-              class="form__input form__input-name"
-            />
-            <input
-              type="text"
-              placeholder="Description"
-              class="form__input form__input-description"
-            />
-            <button type="submit" class="form__button form__save-button">
-              Save
-            </button>
-          </form>
+          <div class="modal-box__form-wrapper">
+            <button class="modal-box__button-close"></button>
+            <form class="form">
+              <h3 class="form__heading">Edit profile</h3>
+              <input
+                type="text"
+                placeholder="name"
+                class="form__input form__input-name"
+                id="form__input-name"
+                name="form__input-name"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Description"
+                class="form__input form__input-description"
+                id="form__input-description"
+                name="form__input-description"
+                required
+              />
+              <button type="submit" class="form__button form__save-button">
+                Save
+              </button>
+            </form>
+          </div>
         </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2023 Around The U.S.</p>
       </footer>
     </div>
-    <script src="./scripts/index.js"></script>
+    <script src="./scripts/index.js" defer></script>
   </body>
 </html>

@@ -10,12 +10,13 @@
   background-color: white;
   opacity: 1;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .form__heading {
   margin: 0;
   font-family: "Inter", Arial, Helvetica, sans-serif;
-  font-style: normal;
+  font-style: 400;
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
@@ -38,14 +39,14 @@
 
 .form__input::placeholder {
   font-family: "Inter", Arial, Helvetica, sans-serif;
-  font-style: normal;
+  font-style: 400;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   color: #000000;
 }
 
-.form input:first-of-type {
+.form :nth-child(2) {
   margin-bottom: 25px;
   margin-top: 54px;
 }
@@ -58,8 +59,8 @@
   border-radius: 2px;
   color: white;
 
-  font-family: "Inter";
-  font-style: normal;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-style: 400;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
@@ -69,48 +70,25 @@
 }
 
 .form__button:hover {
-  background: #ffffff;
-  color: #000000;
-}
-
-.form__button-close {
-  width: 40px;
-  height: 40px;
-  background-image: url(../images/Close\ Icon.svg);
-  border: 1px transparent solid;
-  background-color: transparent;
-  cursor: pointer;
-  background-repeat: no-repeat;
-  background-position: center;
-  position: absolute;
-  top: -40px;
-  right: -40px;
+  opacity: 0.8;
 }
 
 @media (min-width: 320px) and (max-width: 580px) {
   .form {
-    margin: 123px auto auto;
     max-width: 282px;
     min-height: 322px;
     padding: 25px 22px 25px 22px;
-    font-family: "Inter";
-    font-style: normal;
+    font-style: 400;
     font-weight: 900;
     font-size: 18px;
     line-height: 22px;
     /* identical to box height */
     color: #000000;
   }
-
-  .form__button-close {
-    right: 0;
-    width: 26px;
-    height: 26px;
-  }
   .form__button {
     margin: 46px auto 0 auto;
   }
-  .form input:first-of-type {
+  .form :nth-child(2) {
     margin-top: 76px;
   }
 }
