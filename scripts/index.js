@@ -29,16 +29,20 @@ const initialCards = [
 const cardTemplate = document.querySelector("#card").content;
 const gallery = document.querySelector(".gallery");
 
-function createCards() {
-  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+function createCard(cardData) {
+  cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  cardElement.querySelector(".card__title").textContent = cardData.name;
+  cardElement.querySelector(".card__image").src = cardData.link;
+  cardElement.querySelector(".card__image").alt = `photo of ${cardData.name}`;
   return cardElement;
 }
+// function createCard(cardData) {
+//   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+//   return cardElement;
+// }
 function renderCards() {
   for (let i = 0; i < initialCards.length; i++) {
-    const cardElement = createCards();
-    cardElement.querySelector(".card__title").textContent =
-      initialCards[i].name;
-    cardElement.querySelector(".card__image").src = initialCards[i].link;
+    const cardElement = createCard(initialCards[i]);
     gallery.append(cardElement);
   }
 }
@@ -54,44 +58,44 @@ closeButton.addEventListener("click", closeModal);
 editButton.addEventListener("click", openModal);
 form.addEventListener("submit", updateProfile);
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-});
-
 // returns the occupation on the profile
 function getName() {
-  let name = document.querySelector(".profile__heading").textContent;
+  const name = document.querySelector(".profile__heading").textContent;
   return name;
 }
 
 // returns the name on the profile
 function getOccupation() {
-  let occupation = document.querySelector(".profile__sub-heading").textContent;
+  const occupation = document.querySelector(
+    ".profile__sub-heading"
+  ).textContent;
   return occupation;
 }
 
 function fillForm(name, occupation) {
-  name = document.querySelector(".form__input-name").value = name;
-  occupation = document.querySelector(".form__input-description").value =
-    occupation;
+  document.querySelector(".form__input_name").value = name;
+  document.querySelector(".form__input_description").value = occupation;
 }
 
 // closes modal div that contains form
 function closeModal() {
-  const form = document.querySelector(".modal-box");
-  form.classList.toggle("modal-box_visible");
+  const modalBox = document.querySelector(".modal-box");
+  modalBox.classList.toggle("modal-box_visible");
 }
 // opens modal div that contains form
 function openModal() {
-  const form = document.querySelector(".modal-box");
-  form.classList.toggle("modal-box_visible");
+  const modalBox = document.querySelector(".modal-box");
+  modalBox.classList.toggle("modal-box_visible");
   fillForm(getName(), getOccupation());
 }
 
 // updates profile with new values if the input fields are not empty
-function updateProfile() {
-  let newName = document.querySelector(".form__input-name").value;
-  let newOccupation = document.querySelector(".form__input-description").value;
+function updateProfile(event) {
+  const newName = document.querySelector(".form__input_name").value;
+  const newOccupation = document.querySelector(
+    ".form__input_description"
+  ).value;
+  event.preventDefault();
   document.querySelector(".profile__heading").textContent = newName;
   document.querySelector(".profile__sub-heading").textContent = newOccupation;
 

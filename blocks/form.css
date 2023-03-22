@@ -1,3 +1,9 @@
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 123px auto auto;
+}
+
 .form {
   box-sizing: border-box;
   position: relative;
@@ -46,7 +52,7 @@
   color: #000000;
 }
 
-.form :nth-child(2) {
+.form__input_name {
   margin-bottom: 25px;
   margin-top: 54px;
 }
@@ -65,8 +71,9 @@
   font-size: 18px;
   line-height: 22px;
   text-align: center;
-
+  border: none;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .form__button:hover {
