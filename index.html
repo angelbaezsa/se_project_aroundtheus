@@ -50,7 +50,7 @@
             </article>
           </template>
         </section>
-        <section class="modal-box">
+        <article class="modal-box" id="modal-box_edit-profile">
           <div class="modal-box__form-wrapper form-wrapper">
             <button class="modal-box__button-close"></button>
             <form class="form">
@@ -76,7 +76,35 @@
               </button>
             </form>
           </div>
-        </section>
+        </article>
+        <article class="modal-box" id="modal-box_add-card">
+          <div class="modal-box__form-wrapper form-wrapper">
+            <button class="modal-box__button-close"></button>
+            <form class="form">
+              <h3 class="form__heading">New place</h3>
+              <input
+                type="text"
+                placeholder="New Place"
+                class="form__input form__input_name"
+                id="form__input-place"
+                name="form__input-place"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Description"
+                class="form__input form__input_description"
+                id="form__input-description"
+                name="form__input-description"
+                required
+              />
+              <button type="submit" class="form__button form__save-button">
+                Save
+              </button>
+            </form>
+          </div>
+        </article>
+
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2023 Around The U.S.</p>

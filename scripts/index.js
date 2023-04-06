@@ -36,27 +36,39 @@ function createCard(cardData) {
   cardElement.querySelector(".card__image").alt = `photo of ${cardData.name}`;
   return cardElement;
 }
-// function createCard(cardData) {
-//   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-//   return cardElement;
-// }
+
+// this method calls the create card method passing each of the card elements
 function renderCards() {
-  for (let i = 0; i < initialCards.length; i++) {
-    const cardElement = createCard(initialCards[i]);
+  initialCards.forEach((element) => {
+    const cardElement = createCard(element);
     gallery.append(cardElement);
-  }
+  });
 }
 renderCards();
 
 //----------------------------------------------------------------------------------------------------->
-const closeButton = document.querySelector(".modal-box__button-close"); //button that closes form
-const editButton = document.querySelector(".profile__edit-button"); //button that opens form
-const saveButton = document.querySelector(".form__save-button");
-const form = document.querySelector(".form"); //button that saves changes in the profile
+const editButton = document.querySelector(".profile__edit-button"); //button that opens edit profile form
+const addButton = document.querySelector(".profile__add-button"); //button that opend Add card form
+const editModal = document.getElementById("modal-box_edit-profile"); //Edit form modal
+const editModalCloseButton = editModal.querySelector(
+  ".modal-box__button-close"
+);
+const addCardModal = document.getElementById("modal-box_add-card"); //add card modal
+const addCardModalCloseButton = addCardModal.querySelector(
+  ".modal-box__button-close"
+);
+const addCardForm = addCardModal.querySelector(".form"); //represents the form inside the add Card modal
+const editProfileForm = editModal.querySelector(".form"); //represents the form inside the profile modal
 
-closeButton.addEventListener("click", closeModal);
-editButton.addEventListener("click", openModal);
-form.addEventListener("submit", updateProfile);
+editModalCloseButton.addEventListener("click", () => closeModal(editModal)); //close modal passing parameter to functions that tells which modal should be closed
+addCardModalCloseButton.addEventListener("click", () =>
+  closeModal(addCardModal)
+); //close modal passing parameter to functions that tells which modal should be closed
+
+editButton.addEventListener("click", () => openModal(editModal));
+addButton.addEventListener("click", () => openModal(addCardModal));
+editProfileForm.addEventListener("submit", updateProfile);
+addCardForm.addEventListener("submit", createNewCard);
 
 // returns the occupation on the profile
 function getName() {
@@ -78,14 +90,18 @@ function fillForm(name, occupation) {
 }
 
 // closes modal div that contains form
-function closeModal() {
-  const modalBox = document.querySelector(".modal-box");
-  modalBox.classList.toggle("modal-box_visible");
+function closeModal(modal) {
+  modal.classList.toggle("modal-box_visible");
 }
 // opens modal div that contains form
-function openModal() {
-  const modalBox = document.querySelector(".modal-box");
-  modalBox.classList.toggle("modal-box_visible");
+// function openModal(modal) {
+//   const modalBox = document.querySelector(".modal-box");
+//   modalBox.classList.toggle("modal-box_visible");
+//   fillForm(getName(), getOccupation());
+// }
+
+function openModal(modal) {
+  modal.classList.toggle("modal-box_visible");
   fillForm(getName(), getOccupation());
 }
 
@@ -99,5 +115,10 @@ function updateProfile(event) {
   document.querySelector(".profile__heading").textContent = newName;
   document.querySelector(".profile__sub-heading").textContent = newOccupation;
 
-  closeModal();
+  closeModal(editModal);
+}
+
+//creates card and add it to initialCards array so it can be created
+function createNewCard(event) {
+  event.preventDefault();
 }
