@@ -39,9 +39,17 @@ function createCard(cardData) {
 
 // this method calls the create card method passing each of the card elements
 function renderCards() {
+  // clearGallery();
   initialCards.forEach((element) => {
     const cardElement = createCard(element);
-    gallery.append(cardElement);
+    gallery.prepend(cardElement);
+  });
+}
+
+function clearGallery() {
+  initialCards.forEach((element) => {
+    // const cardElement = createCard(element);
+    gallery.remove(element);
   });
 }
 renderCards();
@@ -68,7 +76,7 @@ addCardModalCloseButton.addEventListener("click", () =>
 editButton.addEventListener("click", () => openModal(editModal));
 addButton.addEventListener("click", () => openModal(addCardModal));
 editProfileForm.addEventListener("submit", updateProfile);
-addCardForm.addEventListener("submit", createNewCard);
+addCardForm.addEventListener("submit", addNewCardForm);
 
 // returns the occupation on the profile
 function getName() {
@@ -118,7 +126,20 @@ function updateProfile(event) {
   closeModal(editModal);
 }
 
-//creates card and add it to initialCards array so it can be created
-function createNewCard(event) {
+//creates card and add it to initialCards array so it can be rendered
+function addNewCardForm(event) {
   event.preventDefault();
+
+  const cardName = addCardModal.querySelector("#form__input-place").value;
+  const hyperlink = addCardModal.querySelector("#form__input_url").value;
+
+  const newCard = {
+    name: cardName,
+    link: hyperlink,
+  };
+
+  const cardElement = createCard(newCard);
+  initialCards.push(newCard);
+  gallery.prepend(cardElement);
+  closeModal(addCardModal);
 }
