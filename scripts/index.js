@@ -57,6 +57,7 @@ renderCards();
 //----------------------------------------------------------------------------------------------------->
 const editButton = document.querySelector(".profile__edit-button"); //button that opens edit profile form
 const addButton = document.querySelector(".profile__add-button"); //button that opend Add card form
+const likeButtons = document.querySelectorAll(".card__like-button");
 const editModal = document.getElementById("modal-box_edit-profile"); //Edit form modal
 const editModalCloseButton = editModal.querySelector(
   ".modal-box__button-close"
@@ -75,6 +76,17 @@ addCardModalCloseButton.addEventListener("click", () =>
 
 editButton.addEventListener("click", () => openModal(editModal));
 addButton.addEventListener("click", () => openModal(addCardModal));
+// likeButtons.addEventListener("click", () =>
+//   likeButtons.classList.toggle("card__like-button_active")
+// );
+
+//these lines of code add the function `like` to every button
+likeButtons.forEach((likeButton) =>
+  likeButton.addEventListener("click", () =>
+    likeButton.classList.toggle("card__like-button_active")
+  )
+);
+
 editProfileForm.addEventListener("submit", updateProfile);
 addCardForm.addEventListener("submit", addNewCardForm);
 
