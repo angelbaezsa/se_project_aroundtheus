@@ -6,6 +6,26 @@
   background-color: white;
   overflow: hidden;
   cursor: pointer;
+  position: relative;
+}
+
+.card__delete-button{
+  background: transparent;
+  background-image: url(../images/Trash.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: 1;
+  width: 18px;
+  height: 19.3px;
+  border: 0;
+  top: 18px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.card__delete-button:hover{
+  opacity: .8;
 }
 
 .card__image {
