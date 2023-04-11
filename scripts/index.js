@@ -58,6 +58,7 @@ renderCards();
 const editButton = document.querySelector(".profile__edit-button"); //button that opens edit profile form
 const addButton = document.querySelector(".profile__add-button"); //button that opend Add card form
 const likeButtons = document.querySelectorAll(".card__like-button");
+const deleteCardButtons = document.querySelectorAll(".card__delete-button");
 const editModal = document.getElementById("modal-box_edit-profile"); //Edit form modal
 const editModalCloseButton = editModal.querySelector(
   ".modal-box__button-close"
@@ -86,6 +87,20 @@ likeButtons.forEach((likeButton) =>
     likeButton.classList.toggle("card__like-button_active")
   )
 );
+
+deleteCardButtons.forEach((deleteCardButton) =>
+  deleteCardButton.addEventListener("click", () => {
+    const thisCard = deleteCardButton.closest(".card");
+    thisCard.remove();
+  })
+);
+
+// deleteCardButtons.forEach((deleteCardButton) => {
+//   deleteCardButton.addEventListener("click", () => {
+//     const thisCard = deleteCardButton.closest(".card");
+//     thisCard.remove();
+//   });
+// });
 
 editProfileForm.addEventListener("submit", updateProfile);
 addCardForm.addEventListener("submit", addNewCardForm);

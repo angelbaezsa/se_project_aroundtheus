@@ -39,7 +39,6 @@
         </section>
         <section class="gallery">
           <template id="card">
-            <div class="card">
               <div class="gallery__card card">
                 <button class="card__delete-button"></button>
                 <img src="" alt="" class="card__image" />
@@ -48,7 +47,6 @@
                   <button type="button" class="card__like-button"></button>
                 </div>
               </div>
-            </div>
           </template>
         </section>
         <article class="modal-box" id="modal-box_edit-profile">
@@ -79,6 +77,33 @@
           </div>
         </article>
         <article class="modal-box" id="modal-box_add-card">
+          <div class="modal-box__form-wrapper form-wrapper">
+            <button class="modal-box__button-close"></button>
+            <form class="form">
+              <h3 class="form__heading">New place</h3>
+              <input
+                type="text"
+                placeholder="New Place"
+                class="form__input form__input_name"
+                id="form__input-place"
+                name="form__input-place"
+                required
+              />
+              <input
+                type="url"
+                placeholder="Image URL"
+                class="form__input form__input_url"
+                id="form__input_url"
+                name="form__input_url"
+                required
+              />
+              <button type="submit" class="form__button form__save-button">
+                Save
+              </button>
+            </form>
+          </div>
+        </article>
+        <article class="modal-box" id="modal-box_">
           <div class="modal-box__form-wrapper form-wrapper">
             <button class="modal-box__button-close"></button>
             <form class="form">
