@@ -57,4 +57,9 @@
     width: 26px;
     height: 26px;
   }
+
+  .modal-box__wrapper {
+    max-width: 75vw;
+    max-height: 85vh;
+  }
 }
