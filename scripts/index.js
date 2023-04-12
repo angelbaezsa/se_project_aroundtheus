@@ -97,9 +97,16 @@ likeButtons.forEach((likeButton) =>
 cardPhotos.forEach((cardPhoto) =>
   cardPhoto.addEventListener("click", () => {
     const picture = cardPhoto.closest(".card__image");
+    // const title = cardPhoto.querySelector(".card__title");
+    const title = cardPhoto.parentElement;
+    console.log(cardPhoto);
     const modalBoxPhoto = photoViewerModal.querySelector(".modal-box__photo");
-    modalBoxPhoto.src = `${picture.src}`;
+    const modalBoxPhotoTitle = document.querySelector(
+      ".modal-box__photo-title"
+    );
     openModal(photoViewerModal);
+    modalBoxPhoto.src = picture.src;
+    modalBoxPhotoTitle.textContent = `${title.textContent}`;
   })
 );
 
