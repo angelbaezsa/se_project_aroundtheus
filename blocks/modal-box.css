@@ -8,12 +8,15 @@
   min-height: 100%;
   background-color: #000000ad;
   z-index: 1;
+  /* animation */
+  opacity: 0;
+  transition: visibility 0.5s ease-in-out, opacity 0.5s linear;
 }
 
 .modal-box_visible {
   visibility: visible;
+  opacity: 1;
 }
-
 .modal-box__wrapper {
   margin: auto;
   box-sizing: border-box;
