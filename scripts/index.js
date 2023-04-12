@@ -89,7 +89,7 @@ addButton.addEventListener("click", () => openModal(addCardModal));
 
 likeButtons.forEach((likeButton) =>
   likeButton.addEventListener("click", () =>
-    likeButton.classList.toggle(".card__like-button_active")
+    likeButton.classList.toggle("card__like-button_active")
   )
 );
 
