@@ -46,12 +46,6 @@ function renderCards() {
   });
 }
 
-function clearGallery() {
-  initialCards.forEach((element) => {
-    // const cardElement = createCard(element);
-    gallery.remove(element);
-  });
-}
 renderCards();
 
 //----------------------------------------------------------------------------------------------------->
@@ -59,6 +53,11 @@ const editButton = document.querySelector(".profile__edit-button"); //button tha
 const addButton = document.querySelector(".profile__add-button"); //button that opend Add card form
 const likeButtons = document.querySelectorAll(".card__like-button");
 const deleteCardButtons = document.querySelectorAll(".card__delete-button");
+const photoViewerModal = document.querySelector("#modal-box__photo-viewer"); //this is the modal that shows the big pictures once clicked
+const cardPhotos = document.querySelectorAll(".card__image"); //this represents all the card pictures
+const photoViewerCloseButton = photoViewerModal.querySelector(
+  ".modal-box__button-close"
+);
 const editModal = document.getElementById("modal-box_edit-profile"); //Edit form modal
 const editModalCloseButton = editModal.querySelector(
   ".modal-box__button-close"
@@ -71,9 +70,14 @@ const addCardForm = addCardModal.querySelector(".form"); //represents the form i
 const editProfileForm = editModal.querySelector(".form"); //represents the form inside the profile modal
 
 editModalCloseButton.addEventListener("click", () => closeModal(editModal)); //close modal passing parameter to functions that tells which modal should be closed
+//close modal passing parameter to functions that tells which modal should be closed
 addCardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
-); //close modal passing parameter to functions that tells which modal should be closed
+);
+//close modal passing parameter to functions that tells which modal should be closed
+photoViewerCloseButton.addEventListener("click", () =>
+  closeModal(photoViewerModal)
+);
 
 editButton.addEventListener("click", () => openModal(editModal));
 addButton.addEventListener("click", () => openModal(addCardModal));
@@ -82,10 +86,21 @@ addButton.addEventListener("click", () => openModal(addCardModal));
 // );
 
 //these lines of code add the function `like` to every button
+
 likeButtons.forEach((likeButton) =>
   likeButton.addEventListener("click", () =>
-    likeButton.classList.toggle("card__like-button_active")
+    likeButton.classList.toggle(".card__like-button_active")
   )
+);
+
+// these lines of code add events listeners to all cards to open photo viewer modal and
+cardPhotos.forEach((cardPhoto) =>
+  cardPhoto.addEventListener("click", () => {
+    const picture = cardPhoto.closest(".card__image");
+    const modalBoxPhoto = photoViewerModal.querySelector(".modal-box__photo");
+    modalBoxPhoto.src = `${picture.src}`;
+    openModal(photoViewerModal);
+  })
 );
 
 deleteCardButtons.forEach((deleteCardButton) =>
