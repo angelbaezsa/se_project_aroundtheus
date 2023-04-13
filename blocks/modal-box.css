@@ -1,5 +1,4 @@
 .modal-box {
-  visibility: hidden;
   display: flex;
   position: fixed;
   left: 0;
@@ -8,12 +7,15 @@
   min-height: 100%;
   background-color: #000000ad;
   z-index: 1;
+  pointer-events: none;
   /* animation */
   opacity: 0;
-  transition: visibility 0.5s ease-in-out, opacity 0.5s linear;
+  transition: visibility 0s linear, opacity 0.5s linear;
+  visibility: none;
 }
 
 .modal-box_visible {
+  pointer-events: all;
   visibility: visible;
   opacity: 1;
 }
@@ -39,6 +41,9 @@
   margin-left: auto;
   right: -35px;
 }
+.modal-box__button-close:hover {
+  opacity: 0.6;
+}
 
 .modal-box__photo {
   max-width: 100%;
@@ -46,12 +51,11 @@
 }
 
 .modal-box__photo-title {
-  font-family: "Inter";
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
-
   color: #ffffff;
 }
 @media (min-width: 320px) and (max-width: 580px) {
