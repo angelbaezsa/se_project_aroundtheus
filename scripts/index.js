@@ -138,7 +138,9 @@ deleteCardButtons.forEach((deleteCardButton) =>
 //   });
 // });
 
-editProfileForm.addEventListener("submit", updateProfile);
+editProfileForm.addEventListener("submit", updateProfile, () =>
+  fillForm(getName(), getOccupation())
+);
 addCardForm.addEventListener("submit", addNewCardForm);
 
 // returns the occupation on the profile
@@ -202,7 +204,7 @@ function addNewCardForm(event) {
   };
 
   const cardElement = createCard(newCard);
-  initialCards.push(newCard);
   gallery.prepend(cardElement);
   closeModal(addCardModal);
+  addCardForm.reset();
 }
