@@ -39,7 +39,6 @@ function createCard(cardData) {
 
   cardPhoto.addEventListener("click", () => {
     const picture = cardPhoto.closest(".card__image");
-    const title = cardPhoto.parentElement;
 
     const modalBoxPhoto = photoViewerModal.querySelector(".modal-box__photo");
     const modalBoxPhotoTitle = document.querySelector(
@@ -47,7 +46,8 @@ function createCard(cardData) {
     );
     openModal(photoViewerModal);
     modalBoxPhoto.src = picture.src;
-    modalBoxPhotoTitle.textContent = `${title.textContent}`;
+    modalBoxPhotoTitle.textContent = cardData.name;
+    modalBoxPhoto.alt = `Photo of ${cardData.name}`;
   });
 
   likeButton.addEventListener("click", () =>
@@ -126,8 +126,8 @@ addButton.addEventListener("click", () => openModal(addCardModal));
 
 deleteCardButtons.forEach((deleteCardButton) =>
   deleteCardButton.addEventListener("click", () => {
-    const thisCard = deleteCardButton.closest(".card");
-    thisCard.remove();
+    const card = deleteCardButton.closest(".card");
+    card.remove();
   })
 );
 
@@ -162,7 +162,7 @@ function fillForm(name, occupation) {
 
 // closes modal div that contains form
 function closeModal(modal) {
-  modal.classList.toggle("modal-box_visible");
+  modal.classList.remove("modal-box_visible");
 }
 // opens modal div that contains form
 // function openModal(modal) {
@@ -172,7 +172,7 @@ function closeModal(modal) {
 // }
 
 function openModal(modal) {
-  modal.classList.toggle("modal-box_visible");
+  modal.classList.add("modal-box_visible");
   fillForm(getName(), getOccupation());
 }
 
