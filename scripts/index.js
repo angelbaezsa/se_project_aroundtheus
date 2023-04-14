@@ -105,11 +105,10 @@ photoViewerCloseButton.addEventListener("click", () =>
   closeModal(photoViewerModal)
 );
 
-editButton.addEventListener(
-  "click",
-  () => openModal(editModal),
-  fillprofileForm(getName(), getOccupation())
-);
+editButton.addEventListener("click", () => {
+  openModal(editModal);
+  fillProfileForm(getName(), getOccupation());
+});
 addButton.addEventListener("click", () => openModal(addCardModal));
 // likeButtons.addEventListener("click", () =>
 //   likeButtons.classList.toggle("card__like-button_active")
@@ -148,9 +147,7 @@ addButton.addEventListener("click", () => openModal(addCardModal));
 //   });
 // });
 
-editProfileForm.addEventListener("submit", updateProfile, () =>
-  fillprofileForm(getName(), getOccupation())
-);
+editProfileForm.addEventListener("submit", updateProfile);
 addCardForm.addEventListener("submit", addNewCardForm);
 
 // returns the occupation on the profile
@@ -167,7 +164,7 @@ function getOccupation() {
   return occupation;
 }
 
-function fillprofileForm(name, occupation) {
+function fillProfileForm(name, occupation) {
   document.querySelector(".form__input_name").value = name;
   document.querySelector(".form__input_description").value = occupation;
 }
