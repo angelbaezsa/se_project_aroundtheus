@@ -34,6 +34,7 @@ function createCard(cardData) {
   cardElement.querySelector(".card__title").textContent = cardData.name;
   const cardPhoto = cardElement.querySelector(".card__image");
   const likeButton = cardElement.querySelector(".card__like-button");
+  const deleteCardButton = cardElement.querySelector(".card__delete-button");
   cardPhoto.src = cardData.link;
   cardPhoto.alt = `photo of ${cardData.name}`;
 
@@ -53,6 +54,11 @@ function createCard(cardData) {
   likeButton.addEventListener("click", () =>
     likeButton.classList.toggle("card__like-button_active")
   );
+
+  deleteCardButton.addEventListener("click", () => {
+    const card = deleteCardButton.closest(".card");
+    card.remove();
+  });
 
   return cardElement;
 }
@@ -124,12 +130,12 @@ addButton.addEventListener("click", () => openModal(addCardModal));
 //   })
 // );
 
-deleteCardButtons.forEach((deleteCardButton) =>
-  deleteCardButton.addEventListener("click", () => {
-    const thisCard = deleteCardButton.closest(".card");
-    thisCard.remove();
-  })
-);
+// deleteCardButtons.forEach((deleteCardButton) =>
+//   deleteCardButton.addEventListener("click", () => {
+//     const thisCard = deleteCardButton.closest(".card");
+//     thisCard.remove();
+//   })
+// );
 
 // deleteCardButtons.forEach((deleteCardButton) => {
 //   deleteCardButton.addEventListener("click", () => {
