@@ -105,7 +105,11 @@ photoViewerCloseButton.addEventListener("click", () =>
   closeModal(photoViewerModal)
 );
 
-editButton.addEventListener("click", () => openModal(editModal));
+editButton.addEventListener(
+  "click",
+  () => openModal(editModal),
+  fillprofileForm(getName(), getOccupation())
+);
 addButton.addEventListener("click", () => openModal(addCardModal));
 // likeButtons.addEventListener("click", () =>
 //   likeButtons.classList.toggle("card__like-button_active")
@@ -145,7 +149,7 @@ addButton.addEventListener("click", () => openModal(addCardModal));
 // });
 
 editProfileForm.addEventListener("submit", updateProfile, () =>
-  fillForm(getName(), getOccupation())
+  fillprofileForm(getName(), getOccupation())
 );
 addCardForm.addEventListener("submit", addNewCardForm);
 
@@ -163,7 +167,7 @@ function getOccupation() {
   return occupation;
 }
 
-function fillForm(name, occupation) {
+function fillprofileForm(name, occupation) {
   document.querySelector(".form__input_name").value = name;
   document.querySelector(".form__input_description").value = occupation;
 }
@@ -181,7 +185,7 @@ function closeModal(modal) {
 
 function openModal(modal) {
   modal.classList.add("modal-box_visible");
-  fillForm(getName(), getOccupation());
+  // fillprofileForm(getName(), getOccupation());
 }
 
 // updates profile with new values if the input fields are not empty
