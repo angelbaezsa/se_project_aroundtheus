@@ -88,10 +88,20 @@ const editModal = document.getElementById("modal-box_edit-profile"); //Edit form
 const editModalCloseButton = editModal.querySelector(
   ".modal-box__button-close"
 );
+
+//this event listener triggers when you clicked outside of the form
+photoViewerModal.addEventListener("click", (evt) => closeModal(evt.target));
+//this event listener triggers when you clicked outside of the form
+editModal.addEventListener("click", (evt) => closeModal(evt.target));
+
 const addCardModal = document.getElementById("modal-box_add-card"); //add card modal
 const addCardModalCloseButton = addCardModal.querySelector(
   ".modal-box__button-close"
 );
+
+//this event listener triggers when you clicked outside of the form
+addCardModal.addEventListener("click", (evt) => closeModal(evt.target));
+
 const addCardForm = addCardModal.querySelector(".form"); //represents the form inside the add Card modal
 const editProfileForm = editModal.querySelector(".form"); //represents the form inside the profile modal
 

@@ -7,9 +7,34 @@ const config = {
   errorClass: "popup__error_visible",
 };
 
+const formElements = [...document.querySelectorAll(".form")];
+const formInputs = [...document.querySelectorAll(".form__input")];
+
+function checkInputValidity(input, formElement) {
+  const txtField = input;
+  if (!input.validity.valid) {
+    document.querySelector(`.${input.name}_error-message`).textContent =
+      txtField.validationMessage;
+  } else {
+    document.querySelector(`.${input.name}_error-message`).textContent = "";
+  }
+}
+
+function setEventListeners(formElement) {
+  formInputs.forEach((formInput) => {
+    formInput.addEventListener("input", () => {
+      checkInputValidity(formInput, formElement);
+    });
+  });
+}
+
 function enableValidation(configuration) {
-  const formelements = [...document.querySelectorAll(".form")];
-  console.log(formelements);
+  formElements.forEach((formElement) => {
+    formElement.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+    setEventListeners(formElement);
+  });
 }
 
 enableValidation(config);

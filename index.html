@@ -52,27 +52,31 @@
         <article class="modal-box" id="modal-box_edit-profile">
           <div class="modal-box__form-wrapper form-wrapper">
             <button class="modal-box__button-close"></button>
-            <form class="form">
+            <form class="form" novalidate>
               <h3 class="form__heading">Edit profile</h3>
               <input
                 type="text"
                 placeholder="name"
                 class="form__input form__input_name"
                 id="form__input-name"
-                name="form__input-name"
+                name="input-name"
                 required
+                minlength="2"
+                maxlength="40"
               />
-              <p class="error-message form__error-message"><span >This is an error message</span></p>
+              <p class="input-name_error-message form__error-message "><span ></span></p>
 
               <input
                 type="text"
                 placeholder="Description"
                 class="form__input form__input_description"
                 id="form__input-description"
-                name="form__input-description"
+                name="input-description"
                 required
+                minlength="2"
+                maxlength="40"
               />
-              <p class="error-message form__error-message"><span >This is an error message</span></p>
+              <p class="input-description_error-message form__error-message"><span ></span></p>
               <button type="submit" class="form__button form__save-button">
                 Save
               </button>
@@ -82,26 +86,26 @@
         <article class="modal-box" id="modal-box_add-card">
           <div class="modal-box__form-wrapper form-wrapper">
             <button class="modal-box__button-close"></button>
-            <form class="form">
+            <form class="form" novalidate>
               <h3 class="form__heading">New place</h3>
               <input
                 type="text"
                 placeholder="New Place"
                 class="form__input form__input_name"
                 id="form__input-place"
-                name="place"
+                name="input-place"
                 required
               />
-              <p class="error-message form__error-message"><span >This is an error message</span></p>
+              <p class="input-place_error-message form__error-message"><span ></span></p>
               <input
                 type="url"
                 placeholder="Image URL"
                 class="form__input form__input_url"
                 id="form__input_url"
-                name="url"
+                name="input-url"
                 required
               />
-              <p class="error-message form__error-message"><span >This is an error message</span></p>
+              <p class="input-url_error-message form__error-message"><span ></span></p>
 
               <button type="submit" class="form__button form__save-button">
                 Save
