@@ -14,7 +14,7 @@ function checkInputValidity(input, formElement) {
   const txtField = input;
   if (!input.validity.valid) {
     document.querySelector(`.${input.name}_error-message`).textContent =
-      txtField.validationMessage;
+      input.validationMessage;
   } else {
     document.querySelector(`.${input.name}_error-message`).textContent = "";
   }

@@ -101,6 +101,14 @@ const addCardModalCloseButton = addCardModal.querySelector(
 
 //this event listener triggers when you clicked outside of the form
 addCardModal.addEventListener("click", (evt) => closeModal(evt.target));
+document.addEventListener("keydown", (evt) => {
+  // console.log(evt.key);
+  if (evt.key == "Escape") {
+    const openedModal = document.querySelector(".modal-box_visible");
+    closeModal(openedModal);
+  } else {
+  }
+});
 
 const addCardForm = addCardModal.querySelector(".form"); //represents the form inside the add Card modal
 const editProfileForm = editModal.querySelector(".form"); //represents the form inside the profile modal
