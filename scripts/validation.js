@@ -14,18 +14,19 @@ const formSaveButtons = document.querySelectorAll(".form__button");
 function checkInputValidity(input, formElement) {
   const txtField = input;
   if (!input.validity.valid) {
-    document.querySelector(`.${input.name}__error-message`).textContent =
+    document.querySelector(`.form__${input.name}-error-message`).textContent =
       input.validationMessage;
     const form = document.querySelector(
-      `.${input.name}__error-message`
+      `.form__${input.name}-error-message`
     ).parentElement;
     const currentButton = form.querySelector(".form__save-button");
     currentButton.disabled = true;
     currentButton.classList.add("form__button_disabled");
   } else {
-    document.querySelector(`.${input.name}__error-message`).textContent = "";
+    document.querySelector(`.form__${input.name}-error-message`).textContent =
+      "";
     const form = document.querySelector(
-      `.${input.name}__error-message`
+      `.form__${input.name}-error-message`
     ).parentElement;
     const currentButton = form.querySelector(".form__save-button");
     currentButton.disabled = false;
