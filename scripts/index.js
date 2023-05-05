@@ -39,8 +39,6 @@ function createCard(cardData) {
   cardPhoto.alt = `photo of ${cardData.name}`;
 
   cardPhoto.addEventListener("click", () => {
-    const picture = cardPhoto;
-
     const modalBoxPhoto = photoViewerModal.querySelector(".modal-box__photo");
     const modalBoxPhotoTitle = document.querySelector(
       ".modal-box__photo-title"
@@ -92,6 +90,7 @@ photoViewerModal.addEventListener("click", (evt) => closeModal(evt.target));
 editModal.addEventListener("click", (evt) => closeModal(evt.target));
 
 const addCardModal = document.getElementById("modal-box_add-card"); //add card modal
+console.log(addCardModal);
 const addCardModalCloseButton = addCardModal.querySelector(
   ".modal-box__button-close"
 );
@@ -100,6 +99,7 @@ const addCardModalCloseButton = addCardModal.querySelector(
 addCardModal.addEventListener("click", (evt) => closeModal(evt.target));
 
 const addCardForm = addCardModal.querySelector(".form"); //represents the form inside the add Card modal
+console.log(addCardForm);
 const editProfileForm = editModal.querySelector(".form"); //represents the form inside the profile modal
 
 editModalCloseButton.addEventListener("click", () => {
@@ -120,45 +120,8 @@ editButton.addEventListener("click", () => {
   fillProfileForm(getName(), getOccupation());
 });
 addButton.addEventListener("click", () => {
-  addCardForm.reset();
   openModal(addCardModal);
 });
-// likeButtons.addEventListener("click", () =>
-//   likeButtons.classList.toggle("card__like-button_active")
-// );
-
-//these lines of code add the function `like` to every button
-
-// these lines of code add events listeners to all cards to open photo viewer modal and
-// cardPhotos.forEach((cardPhoto) =>
-//   cardPhoto.addEventListener("click", () => {
-//     const picture = cardPhoto.closest(".card__image");
-//     // const title = cardPhoto.querySelector(".card__title");
-//     const title = cardPhoto.parentElement;
-//     console.log(cardPhoto);
-//     const modalBoxPhoto = photoViewerModal.querySelector(".modal-box__photo");
-//     const modalBoxPhotoTitle = document.querySelector(
-//       ".modal-box__photo-title"
-//     );
-//     openModal(photoViewerModal);
-//     modalBoxPhoto.src = picture.src;
-//     modalBoxPhotoTitle.textContent = `${title.textContent}`;
-//   })
-// );
-
-// deleteCardButtons.forEach((deleteCardButton) =>
-//   deleteCardButton.addEventListener("click", () => {
-//     const card = deleteCardButton.closest(".card");
-//     card.remove();
-//   })
-// );
-
-// deleteCardButtons.forEach((deleteCardButton) => {
-//   deleteCardButton.addEventListener("click", () => {
-//     const thisCard = deleteCardButton.closest(".card");
-//     thisCard.remove();
-//   });
-// });
 
 editProfileForm.addEventListener("submit", updateProfile);
 addCardForm.addEventListener("submit", addNewCard);
@@ -185,25 +148,22 @@ function fillProfileForm(name, occupation) {
 // closes modal div that contains form
 function closeModal(modal) {
   modal.classList.remove("modal-box_visible");
-  document.removeEventListener("keydown", modal);
+  document.removeEventListener("keydown", closeByEscape);
 }
 // opens modal div that contains form
-// function openModal(modal) {
-//   const modalBox = document.querySelector(".modal-box");
-//   modalBox.classList.toggle("modal-box_visible");
-//   fillForm(getName(), getOccupation());
-// }
-const openModal = (modal, evt) => {
+const openModal = (modal) => {
   modal.classList.add("modal-box_visible");
   // fillprofileForm(getName(), getOccupation());
-  document.addEventListener("keydown", (evt) => {
-    if (evt.key == "Escape") {
-      const openedModal = document.querySelector(".modal-box_visible");
-      closeModal(modal);
-    } else {
-    }
-  });
+  document.addEventListener("keydown", closeByEscape);
 };
+
+function closeByEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".modal-box_visible");
+    closeModal(openedPopup);
+  } else {
+  }
+}
 
 // updates profile with new values if the input fields are not empty
 function updateProfile(event) {
@@ -214,7 +174,7 @@ function updateProfile(event) {
   event.preventDefault();
   document.querySelector(".profile__heading").textContent = newName;
   document.querySelector(".profile__sub-heading").textContent = newOccupation;
-
+  editProfileForm.reset();
   closeModal(editModal);
 }
 
@@ -232,6 +192,7 @@ function addNewCard(event) {
 
   const cardElement = createCard(newCard);
   gallery.prepend(cardElement);
-  closeModal(addCardModal);
+
   addCardForm.reset();
+  closeModal(addCardModal);
 }
