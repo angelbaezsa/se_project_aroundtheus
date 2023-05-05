@@ -101,33 +101,31 @@ const addCardModalCloseButton = addCardModal.querySelector(
 
 //this event listener triggers when you clicked outside of the form
 addCardModal.addEventListener("click", (evt) => closeModal(evt.target));
-document.addEventListener("keydown", (evt) => {
-  // console.log(evt.key);
-  if (evt.key == "Escape") {
-    const openedModal = document.querySelector(".modal-box_visible");
-    closeModal(openedModal);
-  } else {
-  }
-});
 
 const addCardForm = addCardModal.querySelector(".form"); //represents the form inside the add Card modal
 const editProfileForm = editModal.querySelector(".form"); //represents the form inside the profile modal
 
-editModalCloseButton.addEventListener("click", () => closeModal(editModal)); //close modal passing parameter to functions that tells which modal should be closed
+editModalCloseButton.addEventListener("click", () => {
+  closeModal(editModal);
+});
 //close modal passing parameter to functions that tells which modal should be closed
-addCardModalCloseButton.addEventListener("click", () =>
-  closeModal(addCardModal)
-);
 //close modal passing parameter to functions that tells which modal should be closed
-photoViewerCloseButton.addEventListener("click", () =>
-  closeModal(photoViewerModal)
-);
+addCardModalCloseButton.addEventListener("click", () => {
+  closeModal(addCardModal);
+});
+//close modal passing parameter to functions that tells which modal should be closed
+photoViewerCloseButton.addEventListener("click", () => {
+  closeModal(photoViewerModal);
+});
 
 editButton.addEventListener("click", () => {
   openModal(editModal);
   fillProfileForm(getName(), getOccupation());
 });
-addButton.addEventListener("click", () => openModal(addCardModal));
+addButton.addEventListener("click", () => {
+  addCardForm.reset();
+  openModal(addCardModal);
+});
 // likeButtons.addEventListener("click", () =>
 //   likeButtons.classList.toggle("card__like-button_active")
 // );
@@ -190,6 +188,7 @@ function fillProfileForm(name, occupation) {
 // closes modal div that contains form
 function closeModal(modal) {
   modal.classList.remove("modal-box_visible");
+  document.removeEventListener("keydown", modal);
 }
 // opens modal div that contains form
 // function openModal(modal) {
@@ -197,11 +196,17 @@ function closeModal(modal) {
 //   modalBox.classList.toggle("modal-box_visible");
 //   fillForm(getName(), getOccupation());
 // }
-
-function openModal(modal) {
+const openModal = (modal, evt) => {
   modal.classList.add("modal-box_visible");
   // fillprofileForm(getName(), getOccupation());
-}
+  document.addEventListener("keydown", (evt) => {
+    if (evt.key == "Escape") {
+      const openedModal = document.querySelector(".modal-box_visible");
+      closeModal(modal);
+    } else {
+    }
+  });
+};
 
 // updates profile with new values if the input fields are not empty
 function updateProfile(event) {

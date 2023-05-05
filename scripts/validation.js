@@ -1,54 +1,171 @@
 const config = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__save-button",
+  inactiveButtonClass: "form__button_disabled",
   inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
+  errorClass: ".form__error-message",
 };
 
-const formElements = [...document.querySelectorAll(".form")];
-const formInputs = [...document.querySelectorAll(".form__input")];
-const formSaveButtons = document.querySelectorAll(".form__button");
+// const formInputs = [...document.querySelectorAll(".form__input")];
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(
+    `.form__${inputElement.name}-error-message`
+  );
+  // inputElement.classList.add("form__input_type_error");
+  errorElement.textContent = errorMessage;
+  // errorElement.classList.add("form__input-error_active");
+};
 
-function checkInputValidity(input, formElement) {
-  const txtField = input;
-  if (!input.validity.valid) {
-    document.querySelector(`.form__${input.name}-error-message`).textContent =
-      input.validationMessage;
-    const form = document.querySelector(
-      `.form__${input.name}-error-message`
-    ).parentElement;
-    const currentButton = form.querySelector(".form__save-button");
-    currentButton.disabled = true;
-    currentButton.classList.add("form__button_disabled");
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(
+    `.form__${inputElement.name}-error-message`
+  );
+  // inputElement.classList.remove("form__input_type_error");
+  // errorElement.classList.remove();
+  errorElement.textContent = "";
+};
+
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
   } else {
-    document.querySelector(`.form__${input.name}-error-message`).textContent =
-      "";
-    const form = document.querySelector(
-      `.form__${input.name}-error-message`
-    ).parentElement;
-    const currentButton = form.querySelector(".form__save-button");
-    currentButton.disabled = false;
-    currentButton.classList.remove("form__button_disabled");
+    hideInputError(formElement, inputElement);
   }
-}
+};
 
-function setEventListeners(formElement) {
-  formInputs.forEach((formInput) => {
-    formInput.addEventListener("input", () => {
-      checkInputValidity(formInput, formElement);
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
+const toggleButtonState = (inputList, buttonElement) => {
+  console.log(hasInvalidInput(inputList));
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add(config.inactiveButtonClass);
+    buttonElement.disabled = true;
+  } else {
+    buttonElement.classList.remove(config.inactiveButtonClass);
+    buttonElement.disabled = false;
+  }
+};
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(
+    formElement.querySelectorAll(config.inputSelector)
+  );
+  const buttonElement = formElement.querySelector(config.submitButtonSelector);
+
+  toggleButtonState(inputList, buttonElement);
+
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener("input", function () {
+      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
     });
   });
-}
+};
 
-function enableValidation(configuration) {
-  formElements.forEach((formElement) => {
-    formElement.addEventListener("submit", (e) => {
-      e.preventDefault();
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    formElement.addEventListener("submit", function (evt) {
+      evt.preventDefault();
     });
+
     setEventListeners(formElement);
   });
-}
+};
 
-enableValidation(config);
+enableValidation();
+
+// const formSaveButtons = document.querySelectorAll(".form__button");
+
+// function checkInputValidity(input, formElement) {
+//   const txtField = input;
+//   if (!input.validity.valid) {
+//     document.querySelector(`.form__${input.name}-error-message`).textContent =
+//       input.validationMessage;
+//     const form = document.querySelector(
+//       `.form__${input.name}-error-message`
+//     ).parentElement;
+//     const currentButton = form.querySelector(".form__save-button");
+//     currentButton.disabled = true;
+//     currentButton.classList.add("form__button_disabled");
+//   } else {
+//     document.querySelector(`.form__${input.name}-error-message`).textContent =
+//       "";
+//     const form = document.querySelector(
+//       `.form__${input.name}-error-message`
+//     ).parentElement;
+//     const currentButton = form.querySelector(".form__save-button");
+//     currentButton.disabled = false;
+//     currentButton.classList.remove("form__button_disabled");
+//   }
+// }
+
+// function setEventListeners(formElement) {
+//   formInputs.forEach((formInput) => {
+//     formInput.addEventListener("input", () => {
+//       checkInputValidity(formInput, formElement);
+//     });
+//   });
+// }
+
+// function enableValidation(configuration) {
+//   formElements.forEach((formElement) => {
+//     formElement.addEventListener("submit", (e) => {
+//       e.preventDefault();
+//     });
+//     setEventListeners(formElement);
+//   });
+// }
+
+// enableValidation(config);
+
+// const formElements = [...document.querySelectorAll(config.formSelector)];
+// const formInputs = [...document.querySelectorAll(config.inputSelector)];
+// const formSaveButtons = document.querySelectorAll(config.submitButtonSelector);
+
+// function checkInputValidity(input, formElement) {
+//   const txtField = input;
+//   if (!input.validity.valid) {
+//     document.querySelector(`.form__${input.name}-error-message`).textContent =
+//       input.validationMessage;
+//     const form = document.querySelector(
+//       `.form__${input.name}-error-message`
+//     ).parentElement;
+//     const currentButton = form.querySelector(config.submitButtonSelector);
+//     currentButton.disabled = true;
+//     currentButton.classList.add(config.inactiveButtonClass);
+//   } else {
+//     document.querySelector(`.form__${input.name}-error-message`).textContent =
+//       "";
+//     const form = document.querySelector(
+//       `.form__${input.name}-error-message`
+//     ).parentElement;
+//     const currentButton = form.querySelector(config.submitButtonSelector);
+//     currentButton.disabled = false;
+//     currentButton.classList.remove(config.inactiveButtonClass);
+//   }
+// }
+
+// function setEventListeners(formElement) {
+//   formInputs.forEach((formInput) => {
+//     formInput.addEventListener("input", () => {
+//       checkInputValidity(formInput, formElement);
+//     });
+//   });
+// }
+
+// function enableValidation(configuration) {
+//   formElements.forEach((formElement) => {
+//     formElement.addEventListener("submit", (e) => {
+//       e.preventDefault();
+//     });
+//     setEventListeners(formElement);
+//   });
+// }
+
+// enableValidation(config);
