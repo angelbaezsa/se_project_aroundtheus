@@ -39,14 +39,14 @@ function createCard(cardData) {
   cardPhoto.alt = `photo of ${cardData.name}`;
 
   cardPhoto.addEventListener("click", () => {
-    const picture = cardPhoto.closest(".card__image");
+    const picture = cardPhoto;
 
     const modalBoxPhoto = photoViewerModal.querySelector(".modal-box__photo");
     const modalBoxPhotoTitle = document.querySelector(
       ".modal-box__photo-title"
     );
     openModal(photoViewerModal);
-    modalBoxPhoto.src = picture.src;
+    modalBoxPhoto.src = cardData.link;
     modalBoxPhotoTitle.textContent = cardData.name;
     modalBoxPhoto.alt = `Photo of ${cardData.name}`;
   });
@@ -77,10 +77,7 @@ renderCards();
 //----------------------------------------------------------------------------------------------------->
 const editButton = document.querySelector(".profile__edit-button"); //button that opens edit profile form
 const addButton = document.querySelector(".profile__add-button"); //button that opend Add card form
-
-const deleteCardButtons = document.querySelectorAll(".card__delete-button");
 const photoViewerModal = document.querySelector("#modal-box__photo-viewer"); //this is the modal that shows the big pictures once clicked
-const cardPhotos = document.querySelectorAll(".card__image"); //this represents all the card pictures
 const photoViewerCloseButton = photoViewerModal.querySelector(
   ".modal-box__button-close"
 );
@@ -164,7 +161,7 @@ addButton.addEventListener("click", () => {
 // });
 
 editProfileForm.addEventListener("submit", updateProfile);
-addCardForm.addEventListener("submit", addNewCardForm);
+addCardForm.addEventListener("submit", addNewCard);
 
 // returns the occupation on the profile
 function getName() {
@@ -222,7 +219,7 @@ function updateProfile(event) {
 }
 
 //creates card and add it to initialCards array so it can be rendered
-function addNewCardForm(event) {
+function addNewCard(event) {
   event.preventDefault();
 
   const cardName = addCardModal.querySelector("#form__input-place").value;
