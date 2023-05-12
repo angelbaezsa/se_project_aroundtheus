@@ -1,0 +1,3 @@
+class Card {
+  constructor(cardData) {}
+}
