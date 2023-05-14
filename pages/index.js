@@ -27,7 +27,11 @@ const initialCards = [
 
 // this code generates the gallery cards using JS and templatemodal-box__button-close
 const cardTemplate = document.querySelector("#card").content;
-const gallery = document.querySelector(".gallery");
+export const gallery = document.querySelector(".gallery");
+
+import { Card } from "../components/Card.js";
+// const card = new Card(initialCards[0], "#card");
+// console.log(card);
 
 function createCard(cardData) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
@@ -65,8 +69,11 @@ function createCard(cardData) {
 function renderCards() {
   // clearGallery();
   initialCards.forEach((element) => {
-    const cardElement = createCard(element);
-    gallery.prepend(cardElement);
+    // const cardElement = createCard(element);
+    // gallery.prepend(cardElement);
+    const card = new Card(element, "#card");
+    card._getPrototype();
+    console.log(card, card._name);
   });
 }
 
