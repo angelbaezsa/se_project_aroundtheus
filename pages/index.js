@@ -41,11 +41,11 @@ export const config = {
 
 //These lines add the function of for validation.
 const editProfileFormValidator = new FormValidation(
-  document.querySelector(".form__edit-profile"),
+  document.querySelector(".form__edit_bio"),
   config
 );
 const addNewCardFormValidator = new FormValidation(
-  document.querySelector(".form__add-new-card"),
+  document.querySelector(".form__add_new-card"),
   config
 );
 
