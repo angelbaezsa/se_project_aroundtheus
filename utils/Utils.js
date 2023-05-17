@@ -1,6 +1,11 @@
+import { Card } from "../components/Card.js"; //importing Card class
+import { gallery } from "../pages/index.js"; //Importing gallery constant
+
 const editButton = document.querySelector(".profile__edit-button"); //button that opens edit profile form
 const addButton = document.querySelector(".profile__add-button"); //button that opend Add card form
-const photoViewerModal = document.querySelector("#modal-box__photo-viewer"); //this is the modal that shows the big pictures once clicked
+export const photoViewerModal = document.querySelector(
+  "#modal-box__photo-viewer"
+); //this is the modal that shows the big pictures once clicked
 const photoViewerCloseButton = photoViewerModal.querySelector(
   ".modal-box__button-close"
 );
@@ -15,7 +20,7 @@ photoViewerModal.addEventListener("click", (evt) => closeModal(evt.target));
 editModal.addEventListener("click", (evt) => closeModal(evt.target));
 
 const addCardModal = document.getElementById("modal-box_add-card"); //add card modal
-console.log(addCardModal);
+
 const addCardModalCloseButton = addCardModal.querySelector(
   ".modal-box__button-close"
 );
@@ -24,7 +29,7 @@ const addCardModalCloseButton = addCardModal.querySelector(
 addCardModal.addEventListener("click", (evt) => closeModal(evt.target));
 
 const addCardForm = addCardModal.querySelector(".form"); //represents the form inside the add Card modal
-console.log(addCardForm);
+
 const editProfileForm = editModal.querySelector(".form"); //represents the form inside the profile modal
 
 editModalCloseButton.addEventListener("click", () => {
@@ -76,7 +81,7 @@ function closeModal(modal) {
   document.removeEventListener("keydown", closeByEscape);
 }
 // opens modal div that contains form
-const openModal = (modal) => {
+export const openModal = (modal) => {
   modal.classList.add("modal-box_visible");
   // fillprofileForm(getName(), getOccupation());
   document.addEventListener("keydown", closeByEscape);
@@ -103,7 +108,7 @@ function updateProfile(event) {
   closeModal(editModal);
 }
 
-function addNewCard(event) {
+function addNewCard() {
   const cardName = addCardModal.querySelector("#form__input-place").value;
   const hyperlink = addCardModal.querySelector("#form__input_url").value;
 
@@ -112,8 +117,8 @@ function addNewCard(event) {
     link: hyperlink,
   };
 
-  const cardElement = createCard(newCard);
-  gallery.prepend(cardElement);
+  const cardElement = new Card(newCard, "#card");
+  gallery.prepend(cardElement.getElement());
 
   addCardForm.reset();
   closeModal(addCardModal);

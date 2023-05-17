@@ -52,7 +52,7 @@
         <article class="modal-box" id="modal-box_edit-profile">
           <div class="modal-box__form-wrapper form-wrapper">
             <button class="modal-box__button-close"></button>
-            <form class="form" novalidate>
+            <form class="form form__edit-profile" novalidate>
               <h3 class="form__heading">Edit profile</h3>
               <input
                 type="text"
@@ -86,7 +86,7 @@
         <article class="modal-box" id="modal-box_add-card" >
           <div class="modal-box__form-wrapper form-wrapper">
             <button class="modal-box__button-close"></button>
-            <form class="form"  novalidate>
+            <form class="form form__add-new-card"  novalidate>
               <h3 class="form__heading">New place</h3>
               <input
                 type="text"
@@ -116,7 +116,7 @@
         <article class="modal-box" id="modal-box__photo-viewer">
           <div class="modal-box__wrapper">
             <button class="modal-box__button-close"></button>          
-            <img class="modal-box__photo" src="./images/lake-louise.jpg" alt="">
+            <img class="modal-box__photo" src="" alt="">
             <p class="modal-box__photo-title"></p>
           </div>
         </article>
@@ -128,6 +128,6 @@
     </div>
     <script src="./pages/index.js" type="module"></script>
     <!-- <script src="./scripts/validation.js" defer></script> -->
-    <script src="./utils/Utils.js"></script>
+    <script src="./utils/Utils.js" type="module"></script>
   </body>
 </html>

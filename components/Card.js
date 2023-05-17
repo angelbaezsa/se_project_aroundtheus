@@ -1,4 +1,5 @@
 // import { gallery } from "../pages";
+import { openModal, photoViewerModal } from "../utils/Utils.js";
 
 export class Card {
   constructor({ name, link }, cardSelector) {
@@ -8,32 +9,33 @@ export class Card {
     this._cardTemplate = document.querySelector(this._cardSelector).content;
   }
 
-  _getPrototype() {
+  getElement() {
     this._cardElement = this._cardTemplate
       .querySelector(".card")
       .cloneNode(true);
-    this.generateCard();
-  }
-
-  generateCard() {
-    this._cardElement.querySelector(".card__title").textContent = this._name;
-    this._cardElement.querySelector(".card__image").src = this._link;
-    this._setEventListeners();
+    this._generateCard();
     return this._cardElement;
   }
 
-  _renderCard() {
-    const gallery = document.querySelector(".gallery");
-    gallery.prepend(this._cardElement);
+  _generateCard() {
+    this._cardElement.querySelector(".card__title").textContent = this._name;
+    this._cardElement.querySelector(".card__image").src = this._link;
+    this._cardElement.querySelector(
+      ".card__image"
+    ).alt = `Photo of ${this._name}`;
+    this._setEventListeners();
   }
 
   _setEventListeners() {
-    // cardPhoto.addEventListener("click", () => {\
-
     this._cardPhoto = this._cardElement.querySelector(".card__image");
     this._cardPhoto.addEventListener("click", () => {
-      // this._handleClick();
-      alert("cardPhoto is working");
+      openModal(photoViewerModal);
+      this._modalBoxPhoto = photoViewerModal.querySelector(".modal-box__photo");
+      this._modalBoxPhoto.src = this._link;
+      this._modalBoxPhotoTitle = photoViewerModal.querySelector(
+        ".modal-box__photo-title"
+      );
+      this._modalBoxPhotoTitle.textContent = this._name;
     });
     // likeButton.addEventListener("click", () =>
     this._likeButton = this._cardElement.querySelector(".card__like-button");
@@ -48,7 +50,6 @@ export class Card {
       this._deleteCard();
       console.log(this._deleteButton);
     });
-    this._renderCard(this._cardElement);
   }
 
   _deleteCard() {

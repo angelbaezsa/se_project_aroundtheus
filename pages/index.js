@@ -24,12 +24,12 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
-
 // this code generates the gallery cards using JS and templatemodal-box__button-close
-const cardTemplate = document.querySelector("#card").content;
-export const gallery = document.querySelector(".gallery");
+//const cardTemplate = document.querySelector("#card").content;
 
-import { FormValidation } from "../components/FormValidation.js";
+import { FormValidation } from "../components/FormValidation.js"; //Import FormValidation Class from components folder.
+export const gallery = document.querySelector(".gallery"); //Export gallery element
+//exports config
 export const config = {
   formSelector: ".form",
   inputSelector: ".form__input",
@@ -39,16 +39,30 @@ export const config = {
   errorClass: `.form__error-message`,
 };
 
-const myForms = [...document.querySelectorAll("form")];
-myForms.forEach((form) => {
-  const formValidation = new FormValidation(form, config);
-  formValidation.enableValidation();
-});
+//These lines add the function of for validation.
+(function validateForms() {
+  const editProfileForm = new FormValidation(
+    document.querySelector(".form__edit-profile"),
+    config
+  );
+  const addNewCardForm = new FormValidation(
+    document.querySelector(".form__add-new-card"),
+    config
+  );
 
-import { Card } from "../components/Card.js";
+  editProfileForm.enableValidation();
+  addNewCardForm.enableValidation();
+})();
+
+import { Card } from "../components/Card.js"; //imports Class Card from Components folder.
+
+//Loop iterates over every element in the array and creates a card for every object stored in it.
 initialCards.forEach((cardElement) => {
   const card = new Card(cardElement, "#card");
-  card._getPrototype();
+  renderCard(card.getElement());
 });
 
-//creates card and add it to initialCards array so it can be rendered
+//functions to insert cards into HTML gallery.
+function renderCard(cardElement) {
+  gallery.prepend(cardElement);
+}

@@ -1,4 +1,4 @@
-import { config } from "../pages/index.js";
+import { config } from "../pages/index.js"; //imports config from pages folder
 // const config = {
 //   formSelector: ".form",
 //   inputSelector: ".form__input",
@@ -13,6 +13,7 @@ export class FormValidation {
     this._config = config;
   }
 
+  //method activates validation on client side
   enableValidation() {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
@@ -49,8 +50,6 @@ export class FormValidation {
 
   _toggleButtonState() {
     this._button = this._form.querySelector(".form__button");
-    console.log(this._button);
-    console.log(this._hasInvalidInput());
     if (this._hasInvalidInput()) {
       this._button.classList.add(config.inactiveButtonClass);
       this._button.disabled = true;

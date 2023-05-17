@@ -96,13 +96,14 @@
   cursor: pointer;
 }
 
-.form__button:hover {
+.form__button:hover:not(:disabled) {
   opacity: 0.8;
 }
 
 .form__button_disabled {
   background: #e5e5e5;
   color: #000000;
+  cursor: default;
 }
 
 @media (min-width: 320px) and (max-width: 580px) {
