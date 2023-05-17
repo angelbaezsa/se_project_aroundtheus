@@ -1,5 +1,6 @@
 // import { gallery } from "../pages";
-import { openModal, photoViewerModal } from "../utils/Utils.js";
+import { photoViewerModal } from "../pages/index.js";
+import { openModal } from "../utils/utils.js";
 
 export class Card {
   constructor({ name, link }, cardSelector) {
@@ -32,6 +33,7 @@ export class Card {
       openModal(photoViewerModal);
       this._modalBoxPhoto = photoViewerModal.querySelector(".modal-box__photo");
       this._modalBoxPhoto.src = this._link;
+      this._modalBoxPhoto.alt = this._name;
       this._modalBoxPhotoTitle = photoViewerModal.querySelector(
         ".modal-box__photo-title"
       );

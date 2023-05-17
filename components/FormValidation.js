@@ -11,6 +11,10 @@ export class FormValidation {
   constructor(form, config) {
     this._form = form;
     this._config = config;
+    this._button = this._form.querySelector(".form__button");
+    this._inputList = [
+      ...this._form.querySelectorAll(this._config.inputSelector),
+    ];
   }
 
   //method activates validation on client side
@@ -48,11 +52,13 @@ export class FormValidation {
     });
   }
 
+  disableSubmitButton() {
+    this._button.classList.add(config.inactiveButtonClass);
+    this._button.disabled = true;
+  }
   _toggleButtonState() {
-    this._button = this._form.querySelector(".form__button");
     if (this._hasInvalidInput()) {
-      this._button.classList.add(config.inactiveButtonClass);
-      this._button.disabled = true;
+      this.disableSubmitButton();
     } else {
       this._button.classList.remove(config.inactiveButtonClass);
       this._button.disabled = false;
@@ -61,11 +67,7 @@ export class FormValidation {
 
   _setEventListeners() {
     this._form.addEventListener("submit", this._toggleButtonState);
-    this._inputList = [
-      ...this._form.querySelectorAll(this._config.inputSelector),
-    ];
     this._toggleButtonState();
-
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
         this._toggleButtonState();
