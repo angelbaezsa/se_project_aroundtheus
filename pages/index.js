@@ -29,57 +29,28 @@ const initialCards = [
 const cardTemplate = document.querySelector("#card").content;
 export const gallery = document.querySelector(".gallery");
 
+import { FormValidation } from "../components/FormValidation.js";
+export const config = {
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__save-button",
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: `.form__error-message`,
+};
+
+const myForms = [...document.querySelectorAll("form")];
+myForms.forEach((form) => {
+  const formValidation = new FormValidation(form, config);
+  formValidation.enableValidation();
+});
+
 import { Card } from "../components/Card.js";
-// const card = new Card(initialCards[0], "#card");
-// console.log(card);
+initialCards.forEach((cardElement) => {
+  const card = new Card(cardElement, "#card");
+  card._getPrototype();
+});
 
-function createCard(cardData) {
-  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-  cardElement.querySelector(".card__title").textContent = cardData.name;
-  const cardPhoto = cardElement.querySelector(".card__image");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const deleteCardButton = cardElement.querySelector(".card__delete-button");
-  cardPhoto.src = cardData.link;
-  cardPhoto.alt = `photo of ${cardData.name}`;
-
-  cardPhoto.addEventListener("click", () => {
-    const modalBoxPhoto = photoViewerModal.querySelector(".modal-box__photo");
-    const modalBoxPhotoTitle = document.querySelector(
-      ".modal-box__photo-title"
-    );
-    openModal(photoViewerModal);
-    modalBoxPhoto.src = cardData.link;
-    modalBoxPhotoTitle.textContent = cardData.name;
-    modalBoxPhoto.alt = `Photo of ${cardData.name}`;
-  });
-
-  likeButton.addEventListener("click", () =>
-    likeButton.classList.toggle("card__like-button_active")
-  );
-
-  deleteCardButton.addEventListener("click", () => {
-    const card = deleteCardButton.closest(".card");
-    card.remove();
-  });
-
-  return cardElement;
-}
-
-// this method calls the create card method passing each of the card elements
-function renderCards() {
-  // clearGallery();
-  initialCards.forEach((element) => {
-    // const cardElement = createCard(element);
-    // gallery.prepend(cardElement);
-    const card = new Card(element, "#card");
-    card._getPrototype();
-    console.log(card, card._name);
-  });
-}
-
-renderCards();
-
-//----------------------------------------------------------------------------------------------------->
 const editButton = document.querySelector(".profile__edit-button"); //button that opens edit profile form
 const addButton = document.querySelector(".profile__add-button"); //button that opend Add card form
 const photoViewerModal = document.querySelector("#modal-box__photo-viewer"); //this is the modal that shows the big pictures once clicked
