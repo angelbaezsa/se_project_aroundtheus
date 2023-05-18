@@ -18,3 +18,6 @@ export function closeByEscape(evt) {
     closeModal(openedPopup);
   }
 }
+
+//the utils.js folder and filename are named in lower case since the first correction,
+//not sure why appears otherwise
