@@ -174,3 +174,14 @@ export function fillProfileForm(name, occupation) {
   document.querySelector(".form__input_name").value = name;
   document.querySelector(".form__input_description").value = occupation;
 }
+
+export function previewCard(link, name) {
+  openModal(photoViewerModal);
+  const modalBoxPhoto = photoViewerModal.querySelector(".modal-box__photo");
+  modalBoxPhoto.src = link;
+  modalBoxPhoto.alt = name;
+  const modalBoxPhotoTitle = photoViewerModal.querySelector(
+    ".modal-box__photo-title"
+  );
+  modalBoxPhotoTitle.textContent = name;
+}

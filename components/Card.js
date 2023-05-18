@@ -1,6 +1,4 @@
-// import { gallery } from "../pages";
-import { photoViewerModal } from "../pages/index.js";
-import { openModal } from "../utils/utils.js";
+import { previewCard } from "../pages/index.js";
 
 export class Card {
   constructor({ name, link }, cardSelector) {
@@ -31,15 +29,9 @@ export class Card {
       ".card__image"
     ).alt = `Photo of ${this._name}`;
   }
+
   _viewCard() {
-    openModal(photoViewerModal);
-    this._modalBoxPhoto = photoViewerModal.querySelector(".modal-box__photo");
-    this._modalBoxPhoto.src = this._link;
-    this._modalBoxPhoto.alt = this._name;
-    this._modalBoxPhotoTitle = photoViewerModal.querySelector(
-      ".modal-box__photo-title"
-    );
-    this._modalBoxPhotoTitle.textContent = this._name;
+    previewCard(this._link, this._name);
   }
   _setEventListeners() {
     this._cardPhoto = this._cardElement.querySelector(".card__image");
