@@ -55,9 +55,13 @@ addNewCardFormValidator.enableValidation();
 import { Card } from "../components/Card.js"; //imports Class Card from Components folder.
 
 //Loop iterates over every element in the array and creates a card for every object stored in it.
+function createCard(cardObject) {
+  const card = new Card(cardObject, "#card");
+  return card.getView();
+}
+
 initialCards.forEach((cardElement) => {
-  const card = new Card(cardElement, "#card");
-  renderCard(card.getElement());
+  renderCard(createCard(cardElement));
 });
 
 //functions to insert cards into HTML gallery.
@@ -146,8 +150,7 @@ export function addNewCard() {
     link: hyperlink,
   };
 
-  const cardElement = new Card(newCard, "#card");
-  gallery.prepend(cardElement.getElement());
+  gallery.prepend(createCard(newCard));
 
   addCardForm.reset();
   closeModal(addCardModal);

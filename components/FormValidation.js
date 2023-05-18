@@ -1,4 +1,4 @@
-import { config } from "../pages/index.js"; //imports config from pages folder
+// import { config } from "../pages/index.js"; //imports config from pages folder
 // const config = {
 //   formSelector: ".form",
 //   inputSelector: ".form__input",
@@ -53,14 +53,14 @@ export class FormValidation {
   }
 
   disableSubmitButton() {
-    this._button.classList.add(config.inactiveButtonClass);
+    this._button.classList.add(this._config.inactiveButtonClass);
     this._button.disabled = true;
   }
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
       this.disableSubmitButton();
     } else {
-      this._button.classList.remove(config.inactiveButtonClass);
+      this._button.classList.remove(this._config.inactiveButtonClass);
       this._button.disabled = false;
     }
   }

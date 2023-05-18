@@ -10,34 +10,42 @@ export class Card {
     this._cardTemplate = document.querySelector(this._cardSelector).content;
   }
 
-  getElement() {
-    this._cardElement = this._cardTemplate
+  _getElement() {
+    this._clonedCard = this._cardTemplate
       .querySelector(".card")
       .cloneNode(true);
-    this._generateCard();
+    return this._clonedCard;
+  }
+
+  getView() {
+    this._cardElement = this._getElement();
+    this._setAttributes();
+    this._setEventListeners();
     return this._cardElement;
   }
 
-  _generateCard() {
+  _setAttributes() {
     this._cardElement.querySelector(".card__title").textContent = this._name;
     this._cardElement.querySelector(".card__image").src = this._link;
     this._cardElement.querySelector(
       ".card__image"
     ).alt = `Photo of ${this._name}`;
-    this._setEventListeners();
   }
-
+  _viewCard() {
+    openModal(photoViewerModal);
+    this._modalBoxPhoto = photoViewerModal.querySelector(".modal-box__photo");
+    this._modalBoxPhoto.src = this._link;
+    this._modalBoxPhoto.alt = this._name;
+    this._modalBoxPhotoTitle = photoViewerModal.querySelector(
+      ".modal-box__photo-title"
+    );
+    this._modalBoxPhotoTitle.textContent = this._name;
+  }
   _setEventListeners() {
     this._cardPhoto = this._cardElement.querySelector(".card__image");
+
     this._cardPhoto.addEventListener("click", () => {
-      openModal(photoViewerModal);
-      this._modalBoxPhoto = photoViewerModal.querySelector(".modal-box__photo");
-      this._modalBoxPhoto.src = this._link;
-      this._modalBoxPhoto.alt = this._name;
-      this._modalBoxPhotoTitle = photoViewerModal.querySelector(
-        ".modal-box__photo-title"
-      );
-      this._modalBoxPhotoTitle.textContent = this._name;
+      this._viewCard();
     });
     // likeButton.addEventListener("click", () =>
     this._likeButton = this._cardElement.querySelector(".card__like-button");

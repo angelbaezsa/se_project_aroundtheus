@@ -1,5 +1,3 @@
-import { Card } from "../components/Card.js"; //importing Card class
-import { gallery } from "../pages/index.js"; //Importing gallery constant
 // returns the occupation on the profile
 
 // closes modal div that contains form
@@ -18,6 +16,5 @@ export function closeByEscape(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".modal-box_visible");
     closeModal(openedPopup);
-  } else {
   }
 }
