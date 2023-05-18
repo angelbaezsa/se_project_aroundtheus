@@ -137,8 +137,8 @@ export function updateProfile(event) {
   document.querySelector(".profile__heading").textContent = newName;
   document.querySelector(".profile__sub-heading").textContent = newOccupation;
   editProfileForm.reset();
-  closeModal(editModal);
   editProfileFormValidator.disableSubmitButton();
+  closeModal(editModal);
 }
 
 export function addNewCard() {
@@ -152,9 +152,9 @@ export function addNewCard() {
 
   gallery.prepend(createCard(newCard));
 
+  addNewCardFormValidator.disableSubmitButton();
   addCardForm.reset();
   closeModal(addCardModal);
-  addNewCardFormValidator.disableSubmitButton();
 }
 
 export function getName() {
