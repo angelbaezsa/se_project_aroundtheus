@@ -66,10 +66,6 @@ export class FormValidation {
   }
 
   _setEventListeners() {
-    this._form.addEventListener("submit", () => {
-      this._toggleButtonState;
-    });
-
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {
