@@ -55,20 +55,25 @@ addNewCardFormValidator.enableValidation();
 import { Card } from "../components/Card.js"; //imports Class Card from Components folder.
 
 //Loop iterates over every element in the array and creates a card for every object stored in it.
+import { Section } from "../components/Section.js";
+
+const cardList = new Section(
+  { items: initialCards, renderer: createCard },
+  gallery
+);
+cardList.renderItems();
+
 function createCard(cardObject) {
   const card = new Card(cardObject, "#card");
   return card.getView();
 }
-
-initialCards.forEach((cardElement) => {
-  renderCard(createCard(cardElement));
+// ------------------------------------------------------------------->
+import { ModalWithForm } from "../components/ModalWithForm.js";
+export const editModal = document.getElementById("modal-box_edit-profile");
+const editProfileModal = new ModalWithForm("modal-box_edit-profile", (evt) => {
+  updateProfile(evt);
 });
-
-//functions to insert cards into HTML gallery.
-function renderCard(cardElement) {
-  gallery.prepend(cardElement);
-}
-// --------------------------------------------
+// ------------------------------------------------------------------->
 
 import { closeModal, openModal } from "../utils/utils.js";
 
@@ -80,7 +85,7 @@ export const photoViewerModal = document.querySelector(
 const photoViewerCloseButton = photoViewerModal.querySelector(
   ".modal-box__button-close"
 );
-export const editModal = document.getElementById("modal-box_edit-profile"); //Edit form modal
+//Edit form modal
 const editModalCloseButton = editModal.querySelector(
   ".modal-box__button-close"
 );
@@ -117,8 +122,9 @@ photoViewerCloseButton.addEventListener("click", () => {
 });
 
 editButton.addEventListener("click", () => {
-  openModal(editModal);
-  fillProfileForm(getName(), getOccupation());
+  editProfileModal.open();
+  // openModal(editModal);
+  // fillProfileForm(getName(), getOccupation());
 });
 addButton.addEventListener("click", () => {
   openModal(addCardModal);
