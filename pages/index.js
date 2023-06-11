@@ -130,7 +130,7 @@ addButton.addEventListener("click", () => {
   openModal(addCardModal);
 });
 
-editProfileForm.addEventListener("submit", updateProfile);
+// editProfileForm.addEventListener("submit", updateProfile);
 addCardForm.addEventListener("submit", addNewCard);
 
 // updates profile with new values if the input fields are not empty
