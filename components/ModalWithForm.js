@@ -24,6 +24,9 @@ export class ModalWithForm extends Modal {
 
   setEventListeners() {
     super.setEventListeners();
+    (evt) => {
+      evt.preventDefault();
+    };
     this._form.addEventListener("submit", this._submitEventHandler);
     const closeButton = this._modal.querySelector(".modal-box__button-close");
     closeButton.addEventListener("click", () => {

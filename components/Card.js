@@ -33,6 +33,7 @@ export class Card {
   _viewCard() {
     previewCard(this._link, this._name);
   }
+
   _setEventListeners() {
     this._cardPhoto = this._cardElement.querySelector(".card__image");
 

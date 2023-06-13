@@ -20,8 +20,17 @@ export class Modal {
   }
 
   setEventListeners() {
+    this._modal
+      .querySelector(".modal-box__button-close")
+      .addEventListener("click", () => {
+        this.close();
+      });
     document.addEventListener("keydown", (evt) => {
       this._handleEscClose(evt);
+    });
+
+    this._modal.addEventListener("click", (evt) => {
+      evt.target === this._modal ? this.close() : null;
     });
   }
 }

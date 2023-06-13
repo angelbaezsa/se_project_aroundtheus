@@ -24,10 +24,16 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
-// this code generates the gallery cards using JS and templatemodal-box__button-close
-//const cardTemplate = document.querySelector("#card").content;
 
+import { Card } from "../components/Card.js"; //imports Class Card from Components folder.
+//Loop iterates over every element in the array and creates a card for every object stored in it.
+import { Section } from "../components/Section.js";
 import { FormValidation } from "../components/FormValidation.js"; //Import FormValidation Class from components folder.
+import { closeModal, openModal } from "../utils/utils.js";
+import { ModalWithForm } from "../components/ModalWithForm.js";
+import { UserInfo } from "../components/UserInfo.js";
+import { ModalWithPhoto } from "../components/ModalWithPhoto.js";
+
 export const gallery = document.querySelector(".gallery"); //Export gallery element
 //exports config
 export const config = {
@@ -52,11 +58,6 @@ const addNewCardFormValidator = new FormValidation(
 editProfileFormValidator.enableValidation();
 addNewCardFormValidator.enableValidation();
 
-import { Card } from "../components/Card.js"; //imports Class Card from Components folder.
-
-//Loop iterates over every element in the array and creates a card for every object stored in it.
-import { Section } from "../components/Section.js";
-
 const cardList = new Section(
   { items: initialCards, renderer: createCard },
   gallery
@@ -68,86 +69,41 @@ function createCard(cardObject) {
   return card.getView();
 }
 // ------------------------------------------------------------------->
-import { ModalWithForm } from "../components/ModalWithForm.js";
-export const editModal = document.getElementById("modal-box_edit-profile");
+
 const editProfileModal = new ModalWithForm("modal-box_edit-profile", (evt) => {
   updateProfile(evt);
 });
-// ------------------------------------------------------------------->
-
-import { closeModal, openModal } from "../utils/utils.js";
+const addNewCardModal = new ModalWithForm("modal-box_add-card", () => {
+  addNewCard();
+});
 
 const editButton = document.querySelector(".profile__edit-button"); //button that opens edit profile form
 const addButton = document.querySelector(".profile__add-button"); //button that opend Add card form
-export const photoViewerModal = document.querySelector(
-  "#modal-box__photo-viewer"
-); //this is the modal that shows the big pictures once clicked
-const photoViewerCloseButton = photoViewerModal.querySelector(
-  ".modal-box__button-close"
-);
-//Edit form modal
-const editModalCloseButton = editModal.querySelector(
-  ".modal-box__button-close"
-);
-
-//this event listener triggers when you clicked outside of the form
-photoViewerModal.addEventListener("click", (evt) => closeModal(evt.target));
-//this event listener triggers when you clicked outside of the form
-editModal.addEventListener("click", (evt) => closeModal(evt.target));
-
-export const addCardModal = document.getElementById("modal-box_add-card"); //add card modal
-
-const addCardModalCloseButton = addCardModal.querySelector(
-  ".modal-box__button-close"
-);
-
-//this event listener triggers when you clicked outside of the form
-addCardModal.addEventListener("click", (evt) => closeModal(evt.target));
-
-export const addCardForm = addCardModal.querySelector(".form"); //represents the form inside the add Card modal
-
-export const editProfileForm = editModal.querySelector(".form"); //represents the form inside the profile modal
-
-editModalCloseButton.addEventListener("click", () => {
-  closeModal(editModal);
-});
-//close modal passing parameter to functions that tells which modal should be closed
-//close modal passing parameter to functions that tells which modal should be closed
-addCardModalCloseButton.addEventListener("click", () => {
-  closeModal(addCardModal);
-});
-//close modal passing parameter to functions that tells which modal should be closed
-photoViewerCloseButton.addEventListener("click", () => {
-  closeModal(photoViewerModal);
-});
 
 editButton.addEventListener("click", () => {
   editProfileModal.open();
-  // openModal(editModal);
-  // fillProfileForm(getName(), getOccupation());
 });
 addButton.addEventListener("click", () => {
-  openModal(addCardModal);
+  addNewCardModal.open();
 });
 
-// editProfileForm.addEventListener("submit", updateProfile);
-addCardForm.addEventListener("submit", addNewCard);
+const userInfo = new UserInfo({
+  userNameSelector: ".profile__heading",
+  userOccupationSelector: ".profile__sub-heading",
+});
 
-// updates profile with new values if the input fields are not empty
 export function updateProfile(event) {
   const newName = document.querySelector(".form__input_name").value;
   const newOccupation = document.querySelector(
     ".form__input_description"
   ).value;
-  event.preventDefault();
-  document.querySelector(".profile__heading").textContent = newName;
-  document.querySelector(".profile__sub-heading").textContent = newOccupation;
-  editProfileForm.reset();
+  userInfo.setUserInfo(newName, newOccupation);
   editProfileFormValidator.disableSubmitButton();
-  closeModal(editModal);
+  editProfileModal.close();
 }
 
 export function addNewCard() {
+  const addCardModal = document.getElementById("modal-box_add-card");
   const cardName = addCardModal.querySelector("#form__input-place").value;
   const hyperlink = addCardModal.querySelector("#form__input_url").value;
 
@@ -159,35 +115,11 @@ export function addNewCard() {
   gallery.prepend(createCard(newCard));
 
   addNewCardFormValidator.disableSubmitButton();
-  addCardForm.reset();
-  closeModal(addCardModal);
+  addNewCardModal.close();
 }
 
-export function getName() {
-  const name = document.querySelector(".profile__heading").textContent;
-  return name;
-}
-
-// returns the name on the profile
-export function getOccupation() {
-  const occupation = document.querySelector(
-    ".profile__sub-heading"
-  ).textContent;
-  return occupation;
-}
-
-export function fillProfileForm(name, occupation) {
-  document.querySelector(".form__input_name").value = name;
-  document.querySelector(".form__input_description").value = occupation;
-}
+const modalWithPhoto = new ModalWithPhoto("#modal-box__photo-viewer");
 
 export function previewCard(link, name) {
-  openModal(photoViewerModal);
-  const modalBoxPhoto = photoViewerModal.querySelector(".modal-box__photo");
-  modalBoxPhoto.src = link;
-  modalBoxPhoto.alt = name;
-  const modalBoxPhotoTitle = photoViewerModal.querySelector(
-    ".modal-box__photo-title"
-  );
-  modalBoxPhotoTitle.textContent = name;
+  modalWithPhoto.open(link, name);
 }
