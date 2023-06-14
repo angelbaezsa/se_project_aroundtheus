@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Around the world" />
     <title>Around the world</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
   </head>
   <body class="page">
     <div class="content">
       <header class="header">
         <img
           class="header__icon header__logo"
-          src="./images/header__logo.svg"
+          src="<%=require('./images/header__logo.svg')%>"
+          
           alt="around the world logo"
         />
       </header>
@@ -23,7 +23,7 @@
         <section class="profile">
           <img
             class="profile__avatar"
-            src="./images/header__avatar.jpg"
+            src="<%=require('./images/header__avatar.jpg')%>"
             alt="Jacques Custeau portrait"
           />
           <div class="profile__info">
@@ -33,7 +33,8 @@
           </div>
           <!-- <div class="profile__button-wrapper"> -->
           <button type="button" class="profile__add-button">
-            <img alt="plus sign icon" src="./images/add_button_Vector.svg" />
+            <img alt="plus sign icon" 
+            src="<%=require('./images/add_button_Vector.svg')%>"/>
           </button>
           <!-- </div> -->
         </section>
@@ -126,8 +127,5 @@
         <p class="footer__copyright">© 2023 Around The U.S.</p>
       </footer>
     </div>
-    <script src="./pages/index.js" type="module"></script>
-    <!-- <script src="./scripts/validation.js" defer></script> -->
-    <script src="./utils/Utils.js" type="module"></script>
   </body>
 </html>

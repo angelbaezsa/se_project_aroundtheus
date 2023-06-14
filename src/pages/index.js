@@ -24,7 +24,7 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
-
+import "../pages/index.css";
 import { Card } from "../components/Card.js"; //imports Class Card from Components folder.
 //Loop iterates over every element in the array and creates a card for every object stored in it.
 import { Section } from "../components/Section.js";
