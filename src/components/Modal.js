@@ -5,8 +5,8 @@ export class Modal {
 
   open() {
     this._modal.classList.add("modal-box_visible");
-    this._modal.addEventListener("click", (evt) => {
-      evt.target === this._modal ? this.close() : null;
+    document.addEventListener("keydown", (evt) => {
+      this._handleEscClose(evt);
     });
   }
 
@@ -25,8 +25,9 @@ export class Modal {
       .addEventListener("click", () => {
         this.close();
       });
-    document.addEventListener("keydown", (evt) => {
-      this._handleEscClose(evt);
+
+    this._modal.addEventListener("click", (evt) => {
+      evt.target === this._modal ? this.close() : null;
     });
   }
 }

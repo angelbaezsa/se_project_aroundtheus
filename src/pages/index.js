@@ -1,7 +1,6 @@
 import { initialCards } from "../utils/constants.js";
 import "../pages/index.css";
 import { Card } from "../components/Card.js"; //imports Class Card from Components folder.
-//Loop iterates over every element in the array and creates a card for every object stored in it.
 import { Section } from "../components/Section.js";
 import { FormValidation } from "../components/FormValidation.js"; //Import FormValidation Class from components folder.
 import { ModalWithForm } from "../components/ModalWithForm.js";
@@ -46,10 +45,10 @@ function createCard(cardObject) {
 // ------------------------------------------------------------------->
 
 const editProfileModal = new ModalWithForm("modal-box_edit-profile", (evt) => {
-  updateProfile(editProfileModal._getInputValues());
+  updateProfile(editProfileModal.getInputValues());
 });
 const addNewCardModal = new ModalWithForm("modal-box_add-card", () => {
-  addNewCard(addNewCardModal._getInputValues());
+  addNewCard(addNewCardModal.getInputValues());
 });
 
 const editButton = document.querySelector(".profile__edit-button"); //button that opens edit profile form
