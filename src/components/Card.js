@@ -1,3 +1,6 @@
+// *my project has no imports in the Card Class a since the first correction,
+// *I am not sure which version is being submitted but my card class looks something like this:
+// url:    https://snipboard.io/xyMlqK.jpg
 export class Card {
   constructor({ name, link }, cardSelector, previewCard) {
     this._name = name;
