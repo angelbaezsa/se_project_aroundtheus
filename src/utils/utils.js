@@ -1,23 +1,8 @@
-// returns the occupation on the profile
-
-// closes modal div that contains form
-export function closeModal(modal) {
-  modal.classList.remove("modal-box_visible");
-  document.removeEventListener("keydown", closeByEscape);
-}
-// opens modal div that contains form
-export const openModal = (modal) => {
-  modal.classList.add("modal-box_visible");
-  // fillprofileForm(getName(), getOccupation());
-  document.addEventListener("keydown", closeByEscape);
-};
-
-export function closeByEscape(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".modal-box_visible");
-    closeModal(openedPopup);
-  }
+export function fillProfileForm(userInfo) {
+  document.querySelector(".form__input_name").value = userInfo.userName;
+  document.querySelector(".form__input_description").value =
+    userInfo.userOccupation;
 }
 
-//! the utils.js folder and filename are named in lower case since the first correction,
-//?not sure why appears otherwise
+// //! the utils.js folder and filename are named in lower case since the first correction,
+// //?not sure why appears otherwise

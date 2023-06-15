@@ -5,14 +5,14 @@ export class Modal {
 
   open() {
     this._modal.classList.add("modal-box_visible");
-    this.setEventListeners();
+    this._modal.addEventListener("click", (evt) => {
+      evt.target === this._modal ? this.close() : null;
+    });
   }
 
   close() {
     this._modal.classList.remove("modal-box_visible");
-    this._modal.removeEventListener("keydown", (evt) => {
-      this._handleEscClose(evt);
-    });
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 
   _handleEscClose(evt) {
@@ -27,10 +27,6 @@ export class Modal {
       });
     document.addEventListener("keydown", (evt) => {
       this._handleEscClose(evt);
-    });
-
-    this._modal.addEventListener("click", (evt) => {
-      evt.target === this._modal ? this.close() : null;
     });
   }
 }

@@ -1,17 +1,8 @@
-// import { config } from "../pages/index.js"; //imports config from pages folder
-// const config = {
-//   formSelector: ".form",
-//   inputSelector: ".form__input",
-//   submitButtonSelector: ".form__save-button",
-//   inactiveButtonClass: "form__button_disabled",
-//   inputErrorClass: "popup__input_type_error",
-//   errorClass: `.form__error-message`,
-// };
 export class FormValidation {
   constructor(form, config) {
     this._form = form;
     this._config = config;
-    this._button = this._form.querySelector(".form__button");
+    this._button = this._form.querySelector(this._config.submitButtonSelector);
     this._inputList = [
       ...this._form.querySelectorAll(this._config.inputSelector),
     ];

@@ -1,11 +1,10 @@
-import { previewCard } from "../pages/index.js";
-
 export class Card {
-  constructor({ name, link }, cardSelector) {
+  constructor({ name, link }, cardSelector, previewCard) {
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
     this._cardTemplate = document.querySelector(this._cardSelector).content;
+    this._previewCard = previewCard;
   }
 
   _getElement() {
@@ -31,7 +30,8 @@ export class Card {
   }
 
   _viewCard() {
-    previewCard(this._link, this._name);
+    // previewCard(this._link, this._name);
+    this._previewCard(this._link, this._name);
   }
 
   _setEventListeners() {

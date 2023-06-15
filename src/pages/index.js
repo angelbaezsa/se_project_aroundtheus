@@ -1,38 +1,13 @@
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
-  },
-];
+import { initialCards } from "../utils/constants.js";
 import "../pages/index.css";
 import { Card } from "../components/Card.js"; //imports Class Card from Components folder.
 //Loop iterates over every element in the array and creates a card for every object stored in it.
 import { Section } from "../components/Section.js";
 import { FormValidation } from "../components/FormValidation.js"; //Import FormValidation Class from components folder.
-import { closeModal, openModal } from "../utils/utils.js";
 import { ModalWithForm } from "../components/ModalWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { ModalWithPhoto } from "../components/ModalWithPhoto.js";
+import { fillProfileForm } from "../utils/utils.js";
 
 export const gallery = document.querySelector(".gallery"); //Export gallery element
 //exports config
@@ -60,65 +35,59 @@ addNewCardFormValidator.enableValidation();
 
 const cardList = new Section(
   { items: initialCards, renderer: createCard },
-  gallery
+  ".gallery"
 );
 cardList.renderItems();
 
 function createCard(cardObject) {
-  const card = new Card(cardObject, "#card");
+  const card = new Card(cardObject, "#card", previewCard);
   return card.getView();
 }
 // ------------------------------------------------------------------->
 
 const editProfileModal = new ModalWithForm("modal-box_edit-profile", (evt) => {
-  updateProfile(evt);
+  updateProfile(editProfileModal._getInputValues());
 });
 const addNewCardModal = new ModalWithForm("modal-box_add-card", () => {
-  addNewCard();
+  addNewCard(addNewCardModal._getInputValues());
 });
 
 const editButton = document.querySelector(".profile__edit-button"); //button that opens edit profile form
 const addButton = document.querySelector(".profile__add-button"); //button that opend Add card form
 
 editButton.addEventListener("click", () => {
+  editProfileFormValidator.disableSubmitButton();
+  fillProfileForm(userInfo.getUserInfo());
   editProfileModal.open();
 });
 addButton.addEventListener("click", () => {
+  addNewCardFormValidator.disableSubmitButton();
   addNewCardModal.open();
 });
 
-const userInfo = new UserInfo({
+export const userInfo = new UserInfo({
   userNameSelector: ".profile__heading",
   userOccupationSelector: ".profile__sub-heading",
 });
 
-export function updateProfile(event) {
-  const newName = document.querySelector(".form__input_name").value;
-  const newOccupation = document.querySelector(
-    ".form__input_description"
-  ).value;
+export function updateProfile(profileObject) {
+  const newName = profileObject["input-name"];
+  const newOccupation = profileObject["input-description"];
   userInfo.setUserInfo(newName, newOccupation);
   editProfileFormValidator.disableSubmitButton();
   editProfileModal.close();
 }
 
-export function addNewCard() {
-  const addCardModal = document.getElementById("modal-box_add-card");
-  const cardName = addCardModal.querySelector("#form__input-place").value;
-  const hyperlink = addCardModal.querySelector("#form__input_url").value;
-
+export function addNewCard(cardData) {
   const newCard = {
-    name: cardName,
-    link: hyperlink,
+    name: cardData["input-place"],
+    link: cardData["input-url"],
   };
-
-  gallery.prepend(createCard(newCard));
-
-  addNewCardFormValidator.disableSubmitButton();
+  cardList.addItem(createCard(newCard));
   addNewCardModal.close();
 }
 
-const modalWithPhoto = new ModalWithPhoto("#modal-box__photo-viewer");
+const modalWithPhoto = new ModalWithPhoto("modal-box__photo-viewer");
 
 export function previewCard(link, name) {
   modalWithPhoto.open(link, name);

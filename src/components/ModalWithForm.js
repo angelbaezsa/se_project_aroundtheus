@@ -17,21 +17,14 @@ export class ModalWithForm extends Modal {
   _getInputValues() {
     const inputsData = {};
     this._inputList.forEach((input) => {
-      inputsData.input = input.value;
+      inputsData[input.name] = input.value;
     });
     return inputsData;
   }
 
   setEventListeners() {
     super.setEventListeners();
-    (evt) => {
-      evt.preventDefault();
-    };
     this._form.addEventListener("submit", this._submitEventHandler);
-    const closeButton = this._modal.querySelector(".modal-box__button-close");
-    closeButton.addEventListener("click", () => {
-      this.close();
-    });
   }
 }
 
