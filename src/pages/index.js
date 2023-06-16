@@ -8,17 +8,8 @@ import { UserInfo } from "../components/UserInfo.js";
 import { ModalWithPhoto } from "../components/ModalWithPhoto.js";
 import { fillProfileForm } from "../utils/utils.js";
 
-export const gallery = document.querySelector(".gallery"); //Export gallery element
-//exports config
-export const config = {
-  formSelector: ".form",
-  inputSelector: ".form__input",
-  submitButtonSelector: ".form__save-button",
-  inactiveButtonClass: "form__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: `.form__error-message`,
-};
-
+//imports config
+import { config } from "../utils/constants.js";
 //These lines add the function of for validation.
 const editProfileFormValidator = new FormValidation(
   document.querySelector(".form_edit-bio"),

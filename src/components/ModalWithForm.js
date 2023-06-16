@@ -1,4 +1,4 @@
-import { config } from "../pages/index.js";
+import { config } from "../utils/constants.js";
 import { Modal } from "./modal.js";
 export class ModalWithForm extends Modal {
   constructor(modalSelector, submitEventHandler) {
