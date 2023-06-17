@@ -5,16 +5,16 @@ export class Modal {
 
   open() {
     this._modal.classList.add("modal-box_visible");
-    document.addEventListener("keydown", this._handleEscClose.bind(this));
+    document.addEventListener("keydown", this._handleEscClose);
   }
   close() {
     this._modal.classList.remove("modal-box_visible");
-    document.removeEventListener("keydown", this._handleEscClose.bind(this));
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 
-  _handleEscClose(evt) {
+  _handleEscClose = (evt) => {
     evt.key === "Escape" ? this.close() : null;
-  }
+  };
 
   setEventListeners() {
     this._modal
