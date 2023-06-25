@@ -7,7 +7,7 @@ import { ModalWithForm } from "../components/ModalWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { ModalWithPhoto } from "../components/ModalWithPhoto.js";
 import { fillProfileForm } from "../utils/utils.js";
-
+import { Api } from "../components/api.js";
 //imports config
 import { config } from "../utils/constants.js";
 //These lines add the function of for validation.
