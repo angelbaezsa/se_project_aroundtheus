@@ -7,7 +7,7 @@ import { ModalWithForm } from "../components/ModalWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { ModalWithPhoto } from "../components/ModalWithPhoto.js";
 import { fillProfileForm } from "../utils/utils.js";
-import { Api } from "../components/api.js";
+import { Api } from "../components/Api.js";
 //imports config
 import { config } from "../utils/constants.js";
 //These lines add the function of for validation.
@@ -82,3 +82,10 @@ const modalWithPhoto = new ModalWithPhoto("modal-box__photo-viewer");
 export function previewCard(link, name) {
   modalWithPhoto.open(link, name);
 }
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
+  headers: {
+    authorization: " 8213539a-e47c-4d36-92f9-050521f3ca6f",
+  },
+});
+api.getInitialCards();
