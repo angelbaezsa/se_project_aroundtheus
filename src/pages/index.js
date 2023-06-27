@@ -10,7 +10,28 @@ import { fillProfileForm } from "../utils/utils.js";
 import { Api } from "../components/Api.js";
 //imports config
 import { config } from "../utils/constants.js";
-//These lines add the function of for validation.
+
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
+  headers: {
+    authorization: "8213539a-e47c-4d36-92f9-050521f3ca6f",
+  },
+});
+
+Promise.all([api.getInitialCards(), api.fetchProfile()])
+  .then(([cardsData, userData]) => {
+    userInfo.setUserInfo(userData.name, userData.about);
+    console.log(cardsData, userData.name, userData.about);
+    const cardList = new Section(
+      { items: cardsData, renderer: createCard },
+      ".gallery"
+    );
+    cardList.renderItems();
+  })
+  .catch((error) => {
+    console.error("Oops, something happened", error);
+  });
+
 const editProfileFormValidator = new FormValidation(
   document.querySelector(".form_edit-bio"),
   config
@@ -23,11 +44,11 @@ const addNewCardFormValidator = new FormValidation(
 editProfileFormValidator.enableValidation();
 addNewCardFormValidator.enableValidation();
 
-const cardList = new Section(
-  { items: initialCards, renderer: createCard },
-  ".gallery"
-);
-cardList.renderItems();
+// const cardList = new Section(
+//   { items: initialCards, renderer: createCard },
+//   ".gallery"
+// );
+// cardList.renderItems();
 
 function createCard(cardObject) {
   const card = new Card(cardObject, "#card", previewCard);
@@ -82,10 +103,3 @@ const modalWithPhoto = new ModalWithPhoto("modal-box__photo-viewer");
 export function previewCard(link, name) {
   modalWithPhoto.open(link, name);
 }
-const api = new Api({
-  baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
-  headers: {
-    authorization: " 8213539a-e47c-4d36-92f9-050521f3ca6f",
-  },
-});
-api.getInitialCards();

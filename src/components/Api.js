@@ -5,20 +5,43 @@ export class Api {
   }
 
   getInitialCards() {
-    return fetch(this._url, {
+    return fetch(`${this._url}/cards`, {
       headers: {
         authorization: this._authorization,
         "Content-Type": "application/json",
       },
     })
-      .then((res) => {
-        res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-      })
+      .then((res) =>
+        res.ok
+          ? res.json()
+          : Promise.reject("An error has occurred", res.status)
+      )
       .then((result) => {
         console.log(result);
+        return result;
       })
-      .catch((error) => console.error("Oops, there was an error", error));
+      .catch((err) => {
+        console.error(err); // log the error to the console
+      });
   }
 
-  // other methods for working with the API
+  fetchProfile() {
+    return fetch(`${this._url}/users/me`, {
+      headers: {
+        authorization: this._authorization,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) =>
+        res.ok
+          ? res.json()
+          : Promise.reject("An error has occurred", res.status)
+      )
+      .then((result) => {
+        return result;
+      })
+      .catch((err) => {
+        console.error(err); // log the error to the console
+      });
+  }
 }
