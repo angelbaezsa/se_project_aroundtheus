@@ -18,11 +18,11 @@ const api = new Api({
   },
 });
 
+let cardList;
 Promise.all([api.getInitialCards(), api.fetchProfile()])
   .then(([cardsData, userData]) => {
     userInfo.setUserInfo(userData.name, userData.about);
-    console.log(cardsData, userData.name, userData.about);
-    const cardList = new Section(
+    cardList = new Section(
       { items: cardsData, renderer: createCard },
       ".gallery"
     );
@@ -84,6 +84,11 @@ export const userInfo = new UserInfo({
 export function updateProfile(profileObject) {
   const newName = profileObject["input-name"];
   const newOccupation = profileObject["input-description"];
+  console.log(profileObject);
+  api.updateProfile({
+    name: newName,
+    occupation: newOccupation,
+  });
   userInfo.setUserInfo(newName, newOccupation);
   editProfileFormValidator.disableSubmitButton();
   editProfileModal.close();
@@ -94,7 +99,25 @@ export function addNewCard(cardData) {
     name: cardData["input-place"],
     link: cardData["input-url"],
   };
-  cardList.addItem(createCard(newCard));
+  api
+    .addNewCard({
+      cardTitle: cardData["input-place"],
+      cardLink: cardData["input-url"],
+    })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      Promise.reject("Something has occured", res.status);
+    })
+    .then((cardResponse) => {
+      console.log(cardResponse);
+      cardList.addItem(createCard(cardResponse));
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
   addNewCardModal.close();
 }
 

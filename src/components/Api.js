@@ -17,7 +17,6 @@ export class Api {
           : Promise.reject("An error has occurred", res.status)
       )
       .then((result) => {
-        console.log(result);
         return result;
       })
       .catch((err) => {
@@ -43,5 +42,33 @@ export class Api {
       .catch((err) => {
         console.error(err); // log the error to the console
       });
+  }
+
+  updateProfile({ name, occupation }) {
+    return fetch(`${this._url}/users/me`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        about: occupation,
+      }),
+    });
+  }
+
+  addNewCard({ cardTitle, cardLink }) {
+    return fetch(`${this._url}/cards`, {
+      method: "POST",
+      headers: {
+        authorization: this._authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: cardTitle,
+        link: cardLink,
+      }),
+    });
   }
 }
