@@ -10,6 +10,7 @@ import { fillProfileForm } from "../utils/utils.js";
 import { Api } from "../components/Api.js";
 //imports config
 import { config } from "../utils/constants.js";
+import { ModalWithDialog } from "../components/ModalWithDialog.js";
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
@@ -50,8 +51,10 @@ addNewCardFormValidator.enableValidation();
 // );
 // cardList.renderItems();
 
+const areYouSureModal = new ModalWithDialog("modal-box_type_delete-card", api);
+
 function createCard(cardObject) {
-  const card = new Card(cardObject, "#card", previewCard);
+  const card = new Card(cardObject, "#card", previewCard, areYouSureModal);
   return card.getView();
 }
 // ------------------------------------------------------------------->

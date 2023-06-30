@@ -1,10 +1,19 @@
 export class Card {
-  constructor({ name, link }, cardSelector, previewCard) {
+  constructor(
+    { name, link, _id, owner },
+    cardSelector,
+    previewCard,
+    handleDelete
+  ) {
     this._name = name;
     this._link = link;
+    this._ownerId = owner._id;
+    this._cardId = _id;
+    this._owner = owner.name;
     this._cardSelector = cardSelector;
     this._cardTemplate = document.querySelector(this._cardSelector).content;
     this._previewCard = previewCard;
+    this._handleDelete = handleDelete;
   }
 
   _getElement() {
@@ -15,9 +24,13 @@ export class Card {
   }
 
   getView() {
+    console.log(this._ownerId, this._owner, this._cardId);
     this._cardElement = this._getElement();
     this._setAttributes();
     this._setEventListeners();
+    if (this._ownerId !== "b467d8eeb238431481a2ba2b") {
+      this._deleteButton.remove();
+    }
     return this._cardElement;
   }
 
@@ -27,6 +40,8 @@ export class Card {
     this._cardElement.querySelector(
       ".card__image"
     ).alt = `Photo of ${this._name}`;
+
+    this._owner == !"Angel Baez" ? this._deleteButton.remove() : null;
   }
 
   _viewCard() {
@@ -50,13 +65,16 @@ export class Card {
       ".card__delete-button"
     );
     this._deleteButton.addEventListener("click", () => {
-      this._deleteCard();
+      this.deleteCard();
     });
   }
 
-  _deleteCard() {
-    this._cardElement.remove();
-    this._cardElement = null;
+  deleteCard() {
+    console.log("you pressed this delete button");
+    this._handleDelete.setEventListeners();
+    this._handleDelete.open();
+    // this._cardElement.remove();
+    // this._cardElement = null;
   }
 
   _handleLike() {

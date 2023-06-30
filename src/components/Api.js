@@ -71,4 +71,6 @@ export class Api {
       }),
     });
   }
+
+  deleteCard() {}
 }
