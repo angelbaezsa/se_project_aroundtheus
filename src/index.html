@@ -45,7 +45,11 @@
                 <img src="" alt="" class="card__image" />
                 <div class="card__content">
                   <h2 class="card__title"></h2>
-                  <button type="button" class="card__like-button"></button>
+                  <div class="like-button-wrapper">
+                    <button type="button" class="card__like-button"></button>
+                    <h5 class="card__likes-counter"></h5>
+                  </div>
+                  
                 </div>
               </div>
           </template>
@@ -124,10 +128,10 @@
         <article class="modal-box" id="modal-box_type_delete-card">
           <div class="modal-box__wrapper">
             <button class="modal-box__button-close"></button> 
-            <form action="submit" class="form">
+            <form class="form form__delete-card">
               <h3 class="modal-box__dialog-title">Are you sure?</h3>
               <button type="submit" class="form__button form__save-button">
-                Save
+                Yes
               </button>
             </form>        
           </div>

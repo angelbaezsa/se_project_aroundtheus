@@ -72,5 +72,54 @@ export class Api {
     });
   }
 
-  deleteCard() {}
+  deleteCard(cardId) {
+    console.log(cardId);
+    return fetch(`${this._url}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._authorization,
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  addLike(cardId) {
+    console.log(cardId);
+    return fetch(`${this._url}/cards/likes/${cardId}`, {
+      method: "PUT",
+      headers: {
+        authorization: this._authorization,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        Promise.reject("something happened", response.status);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  dislike(cardId) {
+    console.log(cardId);
+    return fetch(`${this._url}/cards/likes/${cardId}`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._authorization,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        Promise.reject("something happened", response.status);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }

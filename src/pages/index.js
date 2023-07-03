@@ -45,16 +45,49 @@ const addNewCardFormValidator = new FormValidation(
 editProfileFormValidator.enableValidation();
 addNewCardFormValidator.enableValidation();
 
-// const cardList = new Section(
-//   { items: initialCards, renderer: createCard },
-//   ".gallery"
-// );
-// cardList.renderItems();
+const areYouSureModal = new ModalWithForm("modal-box_type_delete-card");
+const areYouSureModalValidation = new FormValidation(
+  document.querySelector(".form__delete-card"),
+  config
+);
 
-const areYouSureModal = new ModalWithDialog("modal-box_type_delete-card", api);
+areYouSureModalValidation.enableValidation();
 
 function createCard(cardObject) {
-  const card = new Card(cardObject, "#card", previewCard, areYouSureModal);
+  const card = new Card(
+    cardObject,
+    "#card",
+    previewCard,
+    {
+      handleDelete: () => {
+        areYouSureModal.open();
+        areYouSureModal.changeEventListener(() => {
+          console.log(cardObject, cardObject._id);
+          api.deleteCard(cardObject._id).then((res) => {
+            card.deleteCard();
+            areYouSureModal.close();
+            areYouSureModal.eliminateEventListener();
+          });
+        });
+      },
+    },
+    {
+      handleLikeCallback: () => {
+        console.log("handle like call back triggered");
+        api.addLike(cardObject._id).then((response) => {
+          console.log(response.likes.length);
+          card.refreshLikesCount(response.likes.length);
+        });
+      },
+      handleDislikeCallback: () => {
+        console.log("handle dislike call back triggered");
+        api.dislike(cardObject._id).then((response) => {
+          console.log(response.likes.length);
+          card.refreshLikesCount(response.likes.length);
+        });
+      },
+    }
+  );
   return card.getView();
 }
 // ------------------------------------------------------------------->

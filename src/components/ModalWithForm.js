@@ -26,6 +26,17 @@ export class ModalWithForm extends Modal {
     super.setEventListeners();
     this._form.addEventListener("submit", this._submitEventHandler);
   }
+
+  changeEventListener(callback) {
+    this._submitEventHandler = callback;
+    this.setEventListeners();
+    // this._form.removeEventListener("submit", this._submitEventHandler);
+    // this._form.addEventListener("submit", callback);
+  }
+
+  eliminateEventListener() {
+    this._form.removeEventListener("submit", this._submitEventHandler);
+  }
 }
 
 // !Create PopupWithForm as a child class of Popup. The PopupWithForm class must comply with the following
