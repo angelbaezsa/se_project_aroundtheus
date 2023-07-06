@@ -1,4 +1,8 @@
-import { initialCards } from "../utils/constants.js";
+import {
+  addCardSubmitButton,
+  profileSubmitButton,
+  changeAvatarSubmitButton,
+} from "../utils/constants.js";
 import "../pages/index.css";
 import { Card } from "../components/Card.js"; //imports Class Card from Components folder.
 import { Section } from "../components/Section.js";
@@ -149,7 +153,6 @@ export function updateProfilePicture(profileObject) {
   console.log(profileObject);
   api.updateAvatar(newPhotoLink).then((response) => {
     userInfo.setUserAvatar(response.avatar);
-    document.querySelector("").src = response.avatar;
   });
   updateAvatarFormValidator.disableSubmitButton();
   updateAvatarModal.close();

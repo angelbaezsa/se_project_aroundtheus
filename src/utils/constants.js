@@ -33,3 +33,13 @@ export const config = {
   inputErrorClass: "popup__input_type_error",
   errorClass: `.form__error-message`,
 };
+
+export const profileSubmitButton = document.querySelector(
+  ".edit-profile-save-button"
+);
+export const addCardSubmitButton = document.querySelector(
+  ".add-card-save-button"
+);
+export const changeAvatarSubmitButton = document.querySelector(
+  ".update-avatar-save-button"
+);
