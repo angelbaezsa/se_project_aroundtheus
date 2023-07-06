@@ -139,10 +139,16 @@ export function updateProfile(profileObject) {
   const newName = profileObject["input-name"];
   const newOccupation = profileObject["input-description"];
   console.log(profileObject);
-  api.updateProfile({
-    name: newName,
-    occupation: newOccupation,
-  });
+  profileSubmitButton.textContent = "Saving...";
+
+  api
+    .updateProfile({
+      name: newName,
+      occupation: newOccupation,
+    })
+    .finally(() => {
+      profileSubmitButton.textContent = "Save";
+    });
   userInfo.setUserInfo(newName, newOccupation);
   editProfileFormValidator.disableSubmitButton();
   editProfileModal.close();
@@ -151,8 +157,10 @@ export function updateProfile(profileObject) {
 export function updateProfilePicture(profileObject) {
   const newPhotoLink = profileObject["input-url"];
   console.log(profileObject);
+  changeAvatarSubmitButton.textContent = "Saving...";
   api.updateAvatar(newPhotoLink).then((response) => {
     userInfo.setUserAvatar(response.avatar);
+    changeAvatarSubmitButton.textContent = "Save";
   });
   updateAvatarFormValidator.disableSubmitButton();
   updateAvatarModal.close();
@@ -163,6 +171,8 @@ export function addNewCard(cardData) {
     name: cardData["input-place"],
     link: cardData["input-url"],
   };
+  addCardSubmitButton.textContent = "Saving...";
+
   api
     .addNewCard({
       cardTitle: cardData["input-place"],
@@ -180,6 +190,9 @@ export function addNewCard(cardData) {
     })
     .catch((error) => {
       console.error(error);
+    })
+    .finally(() => {
+      addCardSubmitButton.textContent = "Save";
     });
 
   addNewCardModal.close();
