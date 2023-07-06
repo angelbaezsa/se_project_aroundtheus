@@ -122,4 +122,26 @@ export class Api {
         console.error(error);
       });
   }
+
+  updateAvatar(imageLink) {
+    return fetch(`${this._url}/users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._authorization,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        avatar: imageLink,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        Promise.reject("something happened", response.status);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 }

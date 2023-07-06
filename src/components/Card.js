@@ -101,8 +101,11 @@ export class Card {
   }
 
   refreshLikesCount(likesCount) {
-    this._cardElement.querySelector(".card__likes-counter").textContent =
-      likesCount;
+    likesCount < 1
+      ? (this._cardElement.querySelector(".card__likes-counter").textContent =
+          "")
+      : (this._cardElement.querySelector(".card__likes-counter").textContent =
+          likesCount);
   }
 
   _handleLike() {

@@ -8,9 +8,48 @@
   color: white;
 }
 
-.profile__avatar {
+.profile__avatar-wrapper {
   margin-right: 30px;
+  max-width: 120px;
+  max-height: 120px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.profile__avatar-wrapper:hover {
+  opacity: 0.5;
+}
+.edit-avatar-button {
+  z-index: 1;
+}
+.profile__avatar-wrapper:hover .edit-avatar-button {
+  z-index: 2;
+}
+
+.profile__avatar {
   border-radius: 100%;
+  z-index: 1;
+  max-width: 120px;
+  max-height: 120px;
+}
+
+.avatar-edit-button {
+  position: inherit;
+  width: 26px;
+  height: 26px;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+  left: 250%;
+  opacity: 1;
+}
+
+.edit-avatar-button:hover {
+  opacity: 0.7;
 }
 
 .profile__info {

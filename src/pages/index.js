@@ -10,7 +10,6 @@ import { fillProfileForm } from "../utils/utils.js";
 import { Api } from "../components/Api.js";
 //imports config
 import { config } from "../utils/constants.js";
-import { ModalWithDialog } from "../components/ModalWithDialog.js";
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
@@ -23,6 +22,7 @@ let cardList;
 Promise.all([api.getInitialCards(), api.fetchProfile()])
   .then(([cardsData, userData]) => {
     userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserAvatar(userData.avatar);
     cardList = new Section(
       { items: cardsData, renderer: createCard },
       ".gallery"
@@ -50,8 +50,17 @@ const areYouSureModalValidation = new FormValidation(
   document.querySelector(".form__delete-card"),
   config
 );
-
 areYouSureModalValidation.enableValidation();
+
+const updateAvatarIcon = document.querySelector(".edit-avatar-button");
+const updateAvatarModal = new ModalWithForm("modal-box_update-avatar", () => {
+  updateProfilePicture(updateAvatarModal.getInputValues());
+});
+const updateAvatarFormValidator = new FormValidation(
+  document.querySelector(".modal-box_update-avatar", config),
+  config
+);
+updateAvatarFormValidator.enableValidation();
 
 function createCard(cardObject) {
   const card = new Card(
@@ -111,10 +120,15 @@ addButton.addEventListener("click", () => {
   addNewCardFormValidator.disableSubmitButton();
   addNewCardModal.open();
 });
+updateAvatarIcon.addEventListener("click", () => {
+  updateAvatarFormValidator.disableSubmitButton();
+  updateAvatarModal.open();
+});
 
 export const userInfo = new UserInfo({
   userNameSelector: ".profile__heading",
   userOccupationSelector: ".profile__sub-heading",
+  profileAvatarSelector: ".profile__avatar",
 });
 
 export function updateProfile(profileObject) {
@@ -128,6 +142,17 @@ export function updateProfile(profileObject) {
   userInfo.setUserInfo(newName, newOccupation);
   editProfileFormValidator.disableSubmitButton();
   editProfileModal.close();
+}
+
+export function updateProfilePicture(profileObject) {
+  const newPhotoLink = profileObject["input-url"];
+  console.log(profileObject);
+  api.updateAvatar(newPhotoLink).then((response) => {
+    userInfo.setUserAvatar(response.avatar);
+    document.querySelector("").src = response.avatar;
+  });
+  updateAvatarFormValidator.disableSubmitButton();
+  updateAvatarModal.close();
 }
 
 export function addNewCard(cardData) {
