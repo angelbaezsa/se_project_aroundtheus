@@ -3,11 +3,13 @@ export class Card {
     { name, link, _id, owner, likes },
     cardSelector,
     previewCard,
+    { _userID },
     { handleDelete },
     { handleLikeCallback, handleDislikeCallback }
   ) {
     this._name = name;
     this._link = link;
+    this._userID = _userID;
     this._ownerId = owner._id;
     this._cardId = _id;
     this._owner = owner.name;
@@ -34,7 +36,7 @@ export class Card {
     this._cardElement = this._getElement();
     this._setAttributes();
     this._setEventListeners();
-    if (this._ownerId !== "b467d8eeb238431481a2ba2b") {
+    if (this._ownerId !== this._userID) {
       this._deleteButton.remove();
     }
 
@@ -56,8 +58,8 @@ export class Card {
     // this._owner == !"Angel Baez" ? this._deleteButton.remove() : null;
     console.log(this._cardLikesArray);
     this._cardLikesArray.forEach((element) => {
-      // console.log(element);
-      if (element._id == "b467d8eeb238431481a2ba2b") {
+      // console.log(this._userID);
+      if (element._id == this._userID) {
         console.log(`you liked this card ${(element.name, element._id)}`);
         this._cardElement
           .querySelector(".card__like-button")
@@ -111,10 +113,8 @@ export class Card {
   _handleLike() {
     if (this._isLiked) {
       this._handleDislikeCallback();
-      this.dislike();
     } else if (!this._isLiked) {
       this._handleLikeCallback();
-      this.addLike();
     }
 
     // this._handleLikeFunction;

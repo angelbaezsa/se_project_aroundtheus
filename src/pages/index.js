@@ -19,6 +19,7 @@ const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/cohort-3-en",
   headers: {
     authorization: "8213539a-e47c-4d36-92f9-050521f3ca6f",
+    "Content-Type": "application/json",
   },
 });
 
@@ -27,6 +28,8 @@ Promise.all([api.getInitialCards(), api.fetchProfile()])
   .then(([cardsData, userData]) => {
     userInfo.setUserInfo(userData.name, userData.about);
     userInfo.setUserAvatar(userData.avatar);
+    userInfo._userId = userData._id;
+    console.log(userInfo._userId);
     cardList = new Section(
       { items: cardsData, renderer: createCard },
       ".gallery"
@@ -67,37 +70,56 @@ const updateAvatarFormValidator = new FormValidation(
 updateAvatarFormValidator.enableValidation();
 
 function createCard(cardObject) {
+  console.log(cardObject);
   const card = new Card(
     cardObject,
     "#card",
     previewCard,
+    { _userID: userInfo._userId },
     {
       handleDelete: () => {
         areYouSureModal.open();
         areYouSureModal.changeEventListener(() => {
           console.log(cardObject, cardObject._id);
-          api.deleteCard(cardObject._id).then((res) => {
-            card.deleteCard();
-            areYouSureModal.close();
-            areYouSureModal.eliminateEventListener();
-          });
+          api
+            .deleteCard(cardObject._id)
+            .then((res) => {
+              card.deleteCard();
+              areYouSureModal.close();
+              areYouSureModal.eliminateEventListener();
+            })
+            .catch((error) => {
+              console.error("Oops, something happened", error);
+            });
         });
       },
     },
     {
       handleLikeCallback: () => {
         console.log("handle like call back triggered");
-        api.addLike(cardObject._id).then((response) => {
-          console.log(response.likes.length);
-          card.refreshLikesCount(response.likes.length);
-        });
+        api
+          .addLike(cardObject._id)
+          .then((response) => {
+            console.log(response.likes.length);
+            card.addLike();
+            card.refreshLikesCount(response.likes.length);
+          })
+          .catch((error) => {
+            console.error("Oops, something happened", error);
+          });
       },
       handleDislikeCallback: () => {
         console.log("handle dislike call back triggered");
-        api.dislike(cardObject._id).then((response) => {
-          console.log(response.likes.length);
-          card.refreshLikesCount(response.likes.length);
-        });
+        api
+          .dislike(cardObject._id)
+          .then((response) => {
+            console.log(response.likes.length);
+            card.dislike();
+            card.refreshLikesCount(response.likes.length);
+          })
+          .catch((error) => {
+            console.error("Oops, something happened", error);
+          });
       },
     }
   );
@@ -146,22 +168,34 @@ export function updateProfile(profileObject) {
       name: newName,
       occupation: newOccupation,
     })
+    .then(() => {
+      userInfo.setUserInfo(newName, newOccupation);
+      editProfileFormValidator.disableSubmitButton();
+      editProfileModal.close();
+    })
     .finally(() => {
       profileSubmitButton.textContent = "Save";
+    })
+    .catch((error) => {
+      console.error("Oops, something happened", error);
     });
-  userInfo.setUserInfo(newName, newOccupation);
-  editProfileFormValidator.disableSubmitButton();
-  editProfileModal.close();
 }
 
 export function updateProfilePicture(profileObject) {
   const newPhotoLink = profileObject["input-url"];
   console.log(profileObject);
   changeAvatarSubmitButton.textContent = "Saving...";
-  api.updateAvatar(newPhotoLink).then((response) => {
-    userInfo.setUserAvatar(response.avatar);
-    changeAvatarSubmitButton.textContent = "Save";
-  });
+  api
+    .updateAvatar(newPhotoLink)
+    .then((response) => {
+      userInfo.setUserAvatar(response.avatar);
+    })
+    .finally(() => {
+      changeAvatarSubmitButton.textContent = "Save";
+    })
+    .catch((error) => {
+      console.error("Oops, something happened", error);
+    });
   updateAvatarFormValidator.disableSubmitButton();
   updateAvatarModal.close();
 }
@@ -177,12 +211,6 @@ export function addNewCard(cardData) {
     .addNewCard({
       cardTitle: cardData["input-place"],
       cardLink: cardData["input-url"],
-    })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      Promise.reject("Something has occured", res.status);
     })
     .then((cardResponse) => {
       console.log(cardResponse);

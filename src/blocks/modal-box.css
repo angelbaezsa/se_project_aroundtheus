@@ -45,6 +45,10 @@
   opacity: 0.6;
 }
 
+.modal-box__close-button {
+  margin-left: 463px;
+}
+
 .modal-box__photo {
   max-width: 100%;
   max-height: 100%;

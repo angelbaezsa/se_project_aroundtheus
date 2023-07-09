@@ -3,10 +3,12 @@ export class UserInfo {
     userNameSelector,
     userOccupationSelector,
     profileAvatarSelector,
+    userId,
   }) {
     this._userName = document.querySelector(userNameSelector);
     this._userOccupation = document.querySelector(userOccupationSelector);
     this._userAvatar = document.querySelector(profileAvatarSelector);
+    this.userId = userId;
   }
 
   getUserInfo() {
@@ -23,6 +25,10 @@ export class UserInfo {
   }
   setUserAvatar(newPhoto) {
     this._userAvatar.src = newPhoto;
+  }
+  setUserId(userId) {
+    this.userId = userId;
+    return this.userId;
   }
 }
 
