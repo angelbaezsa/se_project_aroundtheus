@@ -86,7 +86,6 @@ function createCard(cardObject) {
             .then((res) => {
               card.deleteCard();
               areYouSureModal.close();
-              areYouSureModal.eliminateEventListener();
             })
             .catch((error) => {
               console.error("Oops, something happened", error);
@@ -170,7 +169,6 @@ export function updateProfile(profileObject) {
     })
     .then(() => {
       userInfo.setUserInfo(newName, newOccupation);
-      editProfileFormValidator.disableSubmitButton();
       editProfileModal.close();
     })
     .finally(() => {
@@ -189,6 +187,7 @@ export function updateProfilePicture(profileObject) {
     .updateAvatar(newPhotoLink)
     .then((response) => {
       userInfo.setUserAvatar(response.avatar);
+      updateAvatarModal.close();
     })
     .finally(() => {
       changeAvatarSubmitButton.textContent = "Save";
@@ -196,8 +195,6 @@ export function updateProfilePicture(profileObject) {
     .catch((error) => {
       console.error("Oops, something happened", error);
     });
-  updateAvatarFormValidator.disableSubmitButton();
-  updateAvatarModal.close();
 }
 
 export function addNewCard(cardData) {
@@ -215,6 +212,7 @@ export function addNewCard(cardData) {
     .then((cardResponse) => {
       console.log(cardResponse);
       cardList.addItem(createCard(cardResponse));
+      addNewCardModal.close();
     })
     .catch((error) => {
       console.error(error);
@@ -222,8 +220,6 @@ export function addNewCard(cardData) {
     .finally(() => {
       addCardSubmitButton.textContent = "Save";
     });
-
-  addNewCardModal.close();
 }
 
 const modalWithPhoto = new ModalWithPhoto("modal-box__photo-viewer");
