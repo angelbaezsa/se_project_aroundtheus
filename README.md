@@ -37,15 +37,15 @@ now cards are created and rendered using JS, functions and forms were added.
 LINK TO DEPLOYED WEBSITE: |
 https://angelbaezsa.github.io/se_project_aroundtheus/
 
-#Web Screen:
+Web Screen:
 
 ![image](https://github.com/angelbaezsa/se_project_aroundtheus/assets/47637565/95185dff-46d1-41f4-9f0d-afad5c46c293)
 
-#Ipad/ Tablet screen:
+Ipad/ Tablet screen:
 
 ![image](https://github.com/angelbaezsa/se_project_aroundtheus/assets/47637565/f7a14503-f3fd-4f3f-a357-2e4bd33ef883)
 
-#Mobile Screen:
+Mobile Screen:
 
 ![image](https://github.com/angelbaezsa/se_project_aroundtheus/assets/47637565/8b4db80a-b704-4622-a8f7-b280cc8cb808)
 
