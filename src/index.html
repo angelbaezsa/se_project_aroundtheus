@@ -21,14 +21,17 @@
       </header>
       <main>
         <section class="profile">
-          <img
+          <div class="profile__avatar-wrapper avatar-wrapper">
+            <div class="edit-avatar-button"><img class="avatar-edit-button" src="<%=require('./images/edit_button_Vector.svg')%>" alt=""></div>
+            <img
             class="profile__avatar"
-            src="<%=require('./images/header__avatar.jpg')%>"
-            alt="Jacques Custeau portrait"
+            src=""
+            alt="Avatar"
           />
+          </div>
           <div class="profile__info">
-            <h1 class="profile__heading">Jacques Custeau</h1>
-            <p class="profile__sub-heading">Explorer</p>
+            <h1 class="profile__heading"></h1>
+            <p class="profile__sub-heading"></p>
             <button type="button" class="profile__edit-button"></button>
           </div>
           <!-- <div class="profile__button-wrapper"> -->
@@ -45,7 +48,11 @@
                 <img src="" alt="" class="card__image" />
                 <div class="card__content">
                   <h2 class="card__title"></h2>
-                  <button type="button" class="card__like-button"></button>
+                  <div class="like-button-wrapper">
+                    <button type="button" class="card__like-button"></button>
+                    <h5 class="card__likes-counter"></h5>
+                  </div>
+                  
                 </div>
               </div>
           </template>
@@ -78,7 +85,7 @@
                 maxlength="40"
               />
               <p class="form__input-description-error-message form__error-message"><span ></span></p>
-              <button type="submit" class="form__button form__save-button">
+              <button type="submit" class="form__button form__save-button edit-profile-save-button">
                 Save
               </button>
             </form>
@@ -108,7 +115,7 @@
               />
               <p class="form__input-url-error-message form__error-message"><span ></span></p>
 
-              <button type="submit" class="form__button form__save-button">
+              <button type="submit" class="form__button form__save-button add-card-save-button">
                 Save
               </button>
             </form>
@@ -122,9 +129,41 @@
           </div>
         </article>
 
+        <article class="modal-box" id="modal-box_type_delete-card">
+          <div class="modal-box__wrapper">
+            <button class="modal-box__button-close modal-box__close-button"></button> 
+            <form class="form form__delete-card">
+              <h3 class="form__heading">Are you sure?</h3>
+              <button type="submit" class="form__button form__save-button">
+                Yes
+              </button>
+            </form>        
+          </div>
+        </article>
+
+        <article class="modal-box modal-box_update-avatar" id="modal-box_update-avatar" >
+          <div class="modal-box__form-wrapper form-wrapper">
+            <button class="modal-box__button-close"></button>
+            <form class="form form_update-avatar"  novalidate>
+              <h3 class="form__heading">Update avatar</h3>
+              <input
+                type="url"
+                placeholder="Image URL"
+                class="form__input form__input_url"
+                id="form__input_url"
+                name="input-url"
+                required
+              />
+              <p class="form__input-url-error-message form__error-message"><span ></span></p>
+              <button type="submit" class="form__button form__save-button update-avatar-save-button">
+                Save
+              </button>
+            </form>
+          </div>
+        </article>
       </main>
       <footer class="footer">
-        <p class="footer__copyright">© 2023 Around The U.S.</p>
+        <p class="footer__copyright">© 2023 Around The U.S</p>
       </footer>
     </div>
   </body>

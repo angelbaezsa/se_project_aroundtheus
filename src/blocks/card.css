@@ -2,14 +2,16 @@
   display: flex;
   flex-direction: column;
   min-width: 282px;
-  border-radius: 10px;
+  /* max-height: 362px; */
+
   background-color: white;
   overflow: hidden;
   cursor: pointer;
   position: relative;
+  box-sizing: border-box;
 }
 
-.card__delete-button{
+.card__delete-button {
   background: transparent;
   background-image: url(../images/Trash.svg);
   background-position: center;
@@ -24,8 +26,8 @@
   cursor: pointer;
 }
 
-.card__delete-button:hover{
-  opacity: .8;
+.card__delete-button:hover {
+  opacity: 0.8;
 }
 
 .card__image {
@@ -36,7 +38,9 @@
 .card__content {
   width: 246px;
   display: flex;
-  margin: 25px auto 31px auto;
+  align-items: center;
+  margin: 25px auto 28px auto;
+  box-sizing: border-box;
 }
 
 .card__title {
@@ -70,4 +74,25 @@
 .card__like-button_active {
   background-image: url(../images/card\ hearth\ black.svg);
   opacity: 1;
+}
+
+.like-button-wrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0;
+}
+
+.card__likes-counter {
+  font-size: 13px;
+  margin: 0;
+  margin-top: 3px;
+  align-items: flex-end;
+
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  border-radius: 10px;
 }

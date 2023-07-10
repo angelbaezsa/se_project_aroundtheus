@@ -24,7 +24,18 @@ export class ModalWithForm extends Modal {
 
   setEventListeners() {
     super.setEventListeners();
-    this._form.addEventListener("submit", this._submitEventHandler);
+    this._form.addEventListener("submit", () => {
+      this._submitEventHandler();
+    });
+  }
+
+  changeEventListener(callback) {
+    this._submitEventHandler = callback;
+    // this.eliminateEventListener();
+
+    // this.setEventListeners();
+    // this._form.removeEventListener("submit", this._submitEventHandler);
+    // this._form.addEventListener("submit", callback);
   }
 }
 

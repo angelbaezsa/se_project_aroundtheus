@@ -19,6 +19,10 @@
   cursor: pointer;
 }
 
+.form__delete-card {
+  margin-top: 0;
+}
+
 .form__heading {
   margin: 0;
   font-family: "Inter", Arial, Helvetica, sans-serif;
