@@ -30,7 +30,7 @@ Elegant CSS Styling: The application incorporates modern and elegant CSS styling
 
 Our Interactive Gallery Web Application, powered by JavaScript and CSS, demonstrates expertise in frontend development, API integration, and user experience design. Its comprehensive CRUD functionality and seamless API integration make it an ideal project to showcase technical skills and proficiency in modern web development practices.
 
-## version 0.2
+## version 9.0
 
 now cards are created and rendered using JS, functions and forms were added.
 
