@@ -12,7 +12,7 @@
 Title: Interactive Gallery Web Application with CRUD Functionality and API Integration
 
 Description:
-Our Interactive Gallery Web Application is a feature-rich and dynamic platform designed to showcase and manage image cards with seamless CRUD operations. Developed using JavaScript and CSS, this project exemplifies modern web development practices and demonstrates proficiency in API integration.
+This Interactive Gallery Web Application is a feature-rich and dynamic platform designed to showcase and manage image cards with seamless CRUD operations. Developed using JavaScript and CSS, this project exemplifies modern web development practices and demonstrates proficiency in API integration.
 
 Key Features:
 
